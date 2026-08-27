@@ -1,0 +1,960 @@
+[
+  {
+    "id": "mistralai/mistral-nemo",
+    "lab": "mistralai",
+    "price": 0.03,
+    "reasoning": false,
+    "usable": true,
+    "provider": "DeepInfra",
+    "quant": "fp8",
+    "mode": "instruct (no reasoning channel)"
+  },
+  {
+    "id": "sao10k/l3-lunaris-8b",
+    "lab": "sao10k",
+    "price": 0.049999999999999996,
+    "reasoning": false,
+    "usable": true,
+    "provider": "Parasail",
+    "quant": "bf16",
+    "mode": "instruct (no reasoning channel)"
+  },
+  {
+    "id": "gryphe/mythomax-l2-13b",
+    "lab": "gryphe",
+    "price": 0.06,
+    "reasoning": false,
+    "usable": true,
+    "provider": "NextBit",
+    "quant": "int4",
+    "mode": "instruct (no reasoning channel)"
+  },
+  {
+    "id": "inclusionai/ling-3.0-flash",
+    "lab": "inclusionai",
+    "price": 0.063,
+    "reasoning": true,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "mistralai/mistral-small-24b-instruct-2501",
+    "lab": "mistralai",
+    "price": 0.08,
+    "reasoning": false,
+    "usable": true,
+    "provider": "DeepInfra",
+    "quant": "fp8",
+    "mode": "instruct (no reasoning channel)"
+  },
+  {
+    "id": "meta-llama/llama-3.1-8b-instruct",
+    "lab": "meta-llama",
+    "price": 0.04,
+    "reasoning": false,
+    "usable": true,
+    "provider": "DeepInfra",
+    "quant": "fp8",
+    "mode": "instruct (no reasoning channel)"
+  },
+  {
+    "id": "nex-agi/nex-n2-mini",
+    "lab": "nex-agi",
+    "price": 0.09999999999999999,
+    "reasoning": true,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "ibm-granite/granite-4.1-8b",
+    "lab": "ibm-granite",
+    "price": 0.09999999999999999,
+    "reasoning": false,
+    "usable": true,
+    "provider": "CoreWeave",
+    "quant": "bf16",
+    "mode": "instruct (no reasoning channel)"
+  },
+  {
+    "id": "rekaai/reka-edge",
+    "lab": "rekaai",
+    "price": 0.09999999999999999,
+    "reasoning": false,
+    "usable": true,
+    "provider": "Reka",
+    "quant": "bf16",
+    "mode": "instruct (no reasoning channel)"
+  },
+  {
+    "id": "mistralai/ministral-3b-2512",
+    "lab": "mistralai",
+    "price": 0.09999999999999999,
+    "reasoning": false,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "google/gemma-3-4b-it",
+    "lab": "google",
+    "price": 0.09999999999999999,
+    "reasoning": false,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "mistralai/ministral-8b",
+    "lab": "mistralai",
+    "price": 0.11,
+    "reasoning": false,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "ibm-granite/granite-4.0-h-micro",
+    "lab": "ibm-granite",
+    "price": 0.112,
+    "reasoning": false,
+    "usable": true,
+    "provider": "Cloudflare",
+    "quant": "unknown",
+    "mode": "instruct (no reasoning channel)"
+  },
+  {
+    "id": "upstage/solar-pro4",
+    "lab": "upstage",
+    "price": 0.12,
+    "reasoning": true,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "deepseek/deepseek-v4-flash-0731",
+    "lab": "deepseek",
+    "price": 0.09999999999999999,
+    "reasoning": true,
+    "usable": true,
+    "provider": "OpenInference",
+    "quant": "fp4",
+    "mode": "reasoning (disable OK)"
+  },
+  {
+    "id": "poolside/laguna-xs-2.1",
+    "lab": "poolside",
+    "price": 0.12,
+    "reasoning": true,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "qwen/qwen3.7-flash",
+    "lab": "qwen",
+    "price": 0.13,
+    "reasoning": true,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "openai/gpt-oss-20b",
+    "lab": "openai",
+    "price": 0.13,
+    "reasoning": true,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "microsoft/phi-4",
+    "lab": "microsoft",
+    "price": 0.14,
+    "reasoning": false,
+    "usable": true,
+    "provider": "DeepInfra",
+    "quant": "bf16",
+    "mode": "instruct (no reasoning channel)"
+  },
+  {
+    "id": "amazon/nova-micro-v1",
+    "lab": "amazon",
+    "price": 0.14,
+    "reasoning": false,
+    "usable": true,
+    "provider": "Amazon Bedrock",
+    "quant": "unknown",
+    "mode": "instruct (no reasoning channel)"
+  },
+  {
+    "id": "qwen/qwen3.5-9b",
+    "lab": "qwen",
+    "price": 0.15,
+    "reasoning": true,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "google/gemma-3-12b-it",
+    "lab": "google",
+    "price": 0.15,
+    "reasoning": false,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "cohere/command-r7b-12-2024",
+    "lab": "cohere",
+    "price": 0.15,
+    "reasoning": false,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "deepseek/deepseek-v4-flash",
+    "lab": "deepseek",
+    "price": 0.18,
+    "reasoning": true,
+    "usable": true,
+    "provider": "DeepInfra",
+    "quant": "fp8",
+    "mode": "reasoning (disable OK)"
+  },
+  {
+    "id": "openai/gpt-oss-120b",
+    "lab": "openai",
+    "price": 0.16999999999999998,
+    "reasoning": true,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "tencent/hy-mt2-1.8b",
+    "lab": "tencent",
+    "price": 0.17700000000000002,
+    "reasoning": false,
+    "usable": true,
+    "provider": "Tencent",
+    "quant": "fp8",
+    "mode": "instruct (no reasoning channel)"
+  },
+  {
+    "id": "poolside/laguna-s-2.1",
+    "lab": "poolside",
+    "price": 0.18,
+    "reasoning": true,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "qwen/qwen3-30b-a3b-instruct-2507",
+    "lab": "qwen",
+    "price": 0.3,
+    "reasoning": false,
+    "usable": true,
+    "provider": "SiliconFlow",
+    "quant": "fp8",
+    "mode": "instruct (no reasoning channel)"
+  },
+  {
+    "id": "meta/muse-spark-1.2-contributor",
+    "lab": "meta",
+    "price": 0.19999999999999998,
+    "reasoning": true,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "nvidia/nemotron-3.5-lightning",
+    "lab": "nvidia",
+    "price": 0.19999999999999998,
+    "reasoning": true,
+    "usable": true,
+    "provider": "DeepInfra",
+    "quant": "bf16",
+    "mode": "reasoning (disable OK)"
+  },
+  {
+    "id": "nvidia/nemotron-3-nano-30b-a3b",
+    "lab": "nvidia",
+    "price": 0.19999999999999998,
+    "reasoning": true,
+    "usable": true,
+    "provider": "DeepInfra",
+    "quant": "fp4",
+    "mode": "reasoning (disable OK)"
+  },
+  {
+    "id": "bytedance/ui-tars-1.5-7b",
+    "lab": "bytedance",
+    "price": 0.19999999999999998,
+    "reasoning": false,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "rekaai/reka-flash-3",
+    "lab": "rekaai",
+    "price": 0.19999999999999998,
+    "reasoning": true,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "qwen/qwen-2.5-7b-instruct",
+    "lab": "qwen",
+    "price": 0.19999999999999998,
+    "reasoning": false,
+    "usable": true,
+    "provider": "Phala",
+    "quant": "unknown",
+    "mode": "instruct (no reasoning channel)"
+  },
+  {
+    "id": "meta-llama/llama-3.2-1b-instruct",
+    "lab": "meta-llama",
+    "price": 0.201,
+    "reasoning": false,
+    "usable": true,
+    "provider": "Cloudflare",
+    "quant": "unknown",
+    "mode": "instruct (no reasoning channel)"
+  },
+  {
+    "id": "amazon/nova-lite-v1",
+    "lab": "amazon",
+    "price": 0.24,
+    "reasoning": false,
+    "usable": true,
+    "provider": "Amazon Bedrock",
+    "quant": "unknown",
+    "mode": "instruct (no reasoning channel)"
+  },
+  {
+    "id": "z-ai/glm-5.3-flash",
+    "lab": "z-ai",
+    "price": 0.25,
+    "reasoning": true,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "xiaomi/mimo-v2.5",
+    "lab": "xiaomi",
+    "price": 0.65,
+    "reasoning": true,
+    "usable": true,
+    "provider": "DeepInfra",
+    "quant": "bf16",
+    "mode": "reasoning (disable OK)"
+  },
+  {
+    "id": "tencent/hy-mt2-30b-a3b",
+    "lab": "tencent",
+    "price": 0.295,
+    "reasoning": false,
+    "usable": true,
+    "provider": "Tencent",
+    "quant": "fp8",
+    "mode": "instruct (no reasoning channel)"
+  },
+  {
+    "id": "tencent/hy-mt2-7b",
+    "lab": "tencent",
+    "price": 0.295,
+    "reasoning": false,
+    "usable": true,
+    "provider": "Tencent",
+    "quant": "fp8",
+    "mode": "instruct (no reasoning channel)"
+  },
+  {
+    "id": "stepfun/step-3.5-flash",
+    "lab": "stepfun",
+    "price": 0.3,
+    "reasoning": true,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "bytedance-seed/seed-1.6-flash",
+    "lab": "bytedance-seed",
+    "price": 0.3,
+    "reasoning": true,
+    "usable": true,
+    "provider": "Seed",
+    "quant": "fp8",
+    "mode": "reasoning (disable OK)"
+  },
+  {
+    "id": "meta-llama/llama-3.2-3b-instruct",
+    "lab": "meta-llama",
+    "price": 0.33,
+    "reasoning": false,
+    "usable": true,
+    "provider": "Parasail",
+    "quant": "bf16",
+    "mode": "instruct (no reasoning channel)"
+  },
+  {
+    "id": "google/gemma-4-26b-a4b-it",
+    "lab": "google",
+    "price": 0.33999999999999997,
+    "reasoning": true,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "google/gemma-4-31b-it",
+    "lab": "google",
+    "price": 0.33999999999999997,
+    "reasoning": true,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "meta-llama/llama-4-scout",
+    "lab": "meta-llama",
+    "price": 0.3,
+    "reasoning": false,
+    "usable": true,
+    "provider": "DeepInfra",
+    "quant": "fp8",
+    "mode": "instruct (no reasoning channel)"
+  },
+  {
+    "id": "deepseek/deepseek-v3.2",
+    "lab": "deepseek",
+    "price": 0.7999999999999999,
+    "reasoning": true,
+    "usable": true,
+    "provider": "DigitalOcean",
+    "quant": "unknown",
+    "mode": "reasoning (disable OK)"
+  },
+  {
+    "id": "nvidia/nemotron-3-super-120b-a12b",
+    "lab": "nvidia",
+    "price": 0.39999999999999997,
+    "reasoning": true,
+    "usable": true,
+    "provider": "DeepInfra",
+    "quant": "bf16",
+    "mode": "reasoning (disable OK)"
+  },
+  {
+    "id": "bytedance-seed/seed-2.0-mini",
+    "lab": "bytedance-seed",
+    "price": 0.39999999999999997,
+    "reasoning": true,
+    "usable": true,
+    "provider": "Seed",
+    "quant": "fp8",
+    "mode": "reasoning (disable OK)"
+  },
+  {
+    "id": "z-ai/glm-4.7-flash",
+    "lab": "z-ai",
+    "price": 0.39999999999999997,
+    "reasoning": true,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "nousresearch/hermes-4-70b",
+    "lab": "nousresearch",
+    "price": 0.39999999999999997,
+    "reasoning": true,
+    "usable": true,
+    "provider": "Nebius",
+    "quant": "fp8",
+    "mode": "reasoning (disable OK)"
+  },
+  {
+    "id": "openai/gpt-5-nano",
+    "lab": "openai",
+    "price": 0.39999999999999997,
+    "reasoning": true,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "openai/gpt-4.1-nano",
+    "lab": "openai",
+    "price": 0.39999999999999997,
+    "reasoning": false,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "thedrummer/unslopnemo-12b",
+    "lab": "thedrummer",
+    "price": 0.39999999999999997,
+    "reasoning": false,
+    "usable": true,
+    "provider": "NextBit",
+    "quant": "fp8",
+    "mode": "instruct (no reasoning channel)"
+  },
+  {
+    "id": "deepseek/deepseek-v3.2-exp",
+    "lab": "deepseek",
+    "price": 0.41,
+    "reasoning": true,
+    "usable": true,
+    "provider": "Novita",
+    "quant": "fp8",
+    "mode": "reasoning (disable OK)"
+  },
+  {
+    "id": "allenai/olmo-3-32b-think",
+    "lab": "allenai",
+    "price": 0.5,
+    "reasoning": true,
+    "usable": false,
+    "why": "no endpoints"
+  },
+  {
+    "id": "thedrummer/cydonia-24b-v4.1",
+    "lab": "thedrummer",
+    "price": 0.5,
+    "reasoning": false,
+    "usable": true,
+    "provider": "Parasail",
+    "quant": "bf16",
+    "mode": "instruct (no reasoning channel)"
+  },
+  {
+    "id": "thedrummer/rocinante-12b",
+    "lab": "thedrummer",
+    "price": 0.5,
+    "reasoning": false,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "tencent/hy3",
+    "lab": "tencent",
+    "price": 0.522,
+    "reasoning": true,
+    "usable": true,
+    "provider": "GMICloud",
+    "quant": "bf16",
+    "mode": "reasoning (disable OK)"
+  },
+  {
+    "id": "upstage/solar-pro-3",
+    "lab": "upstage",
+    "price": 0.6,
+    "reasoning": true,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "cohere/command-r-08-2024",
+    "lab": "cohere",
+    "price": 0.6,
+    "reasoning": false,
+    "usable": true,
+    "provider": "Cohere",
+    "quant": "unknown",
+    "mode": "instruct (no reasoning channel)"
+  },
+  {
+    "id": "microsoft/wizardlm-2-8x22b",
+    "lab": "microsoft",
+    "price": 0.62,
+    "reasoning": false,
+    "usable": true,
+    "provider": "Novita",
+    "quant": "bf16",
+    "mode": "instruct (no reasoning channel)"
+  },
+  {
+    "id": "undi95/remm-slerp-l2-13b",
+    "lab": "undi95",
+    "price": 0.65,
+    "reasoning": false,
+    "usable": true,
+    "provider": "NextBit",
+    "quant": "bf16",
+    "mode": "instruct (no reasoning channel)"
+  },
+  {
+    "id": "nousresearch/hermes-3-llama-3.1-70b",
+    "lab": "nousresearch",
+    "price": 0.7,
+    "reasoning": false,
+    "usable": true,
+    "provider": "DeepInfra",
+    "quant": "fp8",
+    "mode": "instruct (no reasoning channel)"
+  },
+  {
+    "id": "inception/mercury-2",
+    "lab": "inception",
+    "price": 0.75,
+    "reasoning": true,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "sao10k/l3.3-euryale-70b",
+    "lab": "sao10k",
+    "price": 0.75,
+    "reasoning": false,
+    "usable": true,
+    "provider": "NextBit",
+    "quant": "bf16",
+    "mode": "instruct (no reasoning channel)"
+  },
+  {
+    "id": "mancer/weaver",
+    "lab": "mancer",
+    "price": 0.75,
+    "reasoning": false,
+    "usable": true,
+    "provider": "Mancer 2",
+    "quant": "fp8",
+    "mode": "instruct (no reasoning channel)"
+  },
+  {
+    "id": "thedrummer/skyfall-36b-v2",
+    "lab": "thedrummer",
+    "price": 0.7999999999999999,
+    "reasoning": false,
+    "usable": true,
+    "provider": "Parasail",
+    "quant": "fp8",
+    "mode": "instruct (no reasoning channel)"
+  },
+  {
+    "id": "arcee-ai/trinity-large-thinking",
+    "lab": "arcee-ai",
+    "price": 0.85,
+    "reasoning": true,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "z-ai/glm-4.5-air",
+    "lab": "z-ai",
+    "price": 0.85,
+    "reasoning": true,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "sao10k/l3.1-euryale-70b",
+    "lab": "sao10k",
+    "price": 0.85,
+    "reasoning": false,
+    "usable": true,
+    "provider": "DeepInfra",
+    "quant": "fp8",
+    "mode": "instruct (no reasoning channel)"
+  },
+  {
+    "id": "xiaomi/mimo-v2.5-pro",
+    "lab": "xiaomi",
+    "price": 0.87,
+    "reasoning": true,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "z-ai/glm-4.6v",
+    "lab": "z-ai",
+    "price": 0.8999999999999999,
+    "reasoning": true,
+    "usable": true,
+    "provider": "Novita",
+    "quant": "bf16",
+    "mode": "reasoning (disable OK)"
+  },
+  {
+    "id": "cognitivecomputations/dolphin-mistral-24b-venice-edition",
+    "lab": "cognitivecomputations",
+    "price": 0.8999999999999999,
+    "reasoning": false,
+    "usable": true,
+    "provider": "Venice",
+    "quant": "fp16",
+    "mode": "instruct (no reasoning channel)"
+  },
+  {
+    "id": "nex-agi/nex-n2-pro",
+    "lab": "nex-agi",
+    "price": 1.0,
+    "reasoning": true,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "perplexity/sonar",
+    "lab": "perplexity",
+    "price": 1.0,
+    "reasoning": false,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "nousresearch/hermes-3-llama-3.1-405b",
+    "lab": "nousresearch",
+    "price": 1.0,
+    "reasoning": false,
+    "usable": true,
+    "provider": "DeepInfra",
+    "quant": "fp8",
+    "mode": "instruct (no reasoning channel)"
+  },
+  {
+    "id": "minimax/minimax-m2",
+    "lab": "minimax",
+    "price": 1.02,
+    "reasoning": true,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "minimax/minimax-m2.5",
+    "lab": "minimax",
+    "price": 1.08,
+    "reasoning": true,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "minimax/minimax-01",
+    "lab": "minimax",
+    "price": 1.1,
+    "reasoning": false,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "stepfun/step-3.7-flash",
+    "lab": "stepfun",
+    "price": 1.15,
+    "reasoning": true,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "thinkingmachines/inkling-small",
+    "lab": "thinkingmachines",
+    "price": 1.2,
+    "reasoning": true,
+    "usable": true,
+    "provider": "DeepInfra",
+    "quant": "fp8",
+    "mode": "reasoning (disable OK)"
+  },
+  {
+    "id": "meituan/longcat-2.0",
+    "lab": "meituan",
+    "price": 1.2,
+    "reasoning": true,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "minimax/minimax-m3",
+    "lab": "minimax",
+    "price": 1.2,
+    "reasoning": true,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "morph/morph-v3-fast",
+    "lab": "morph",
+    "price": 1.2,
+    "reasoning": false,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "arcee-ai/virtuoso-large",
+    "lab": "arcee-ai",
+    "price": 1.2,
+    "reasoning": false,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "relace/relace-apply-3",
+    "lab": "relace",
+    "price": 1.25,
+    "reasoning": false,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "anthropic/claude-3-haiku",
+    "lab": "anthropic",
+    "price": 1.25,
+    "reasoning": false,
+    "usable": true,
+    "provider": "Amazon Bedrock",
+    "quant": "unknown",
+    "mode": "instruct (no reasoning channel)"
+  },
+  {
+    "id": "aion-labs/aion-3.0-mini",
+    "lab": "aion-labs",
+    "price": 1.4,
+    "reasoning": true,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "meta/muse-glimmer-30b",
+    "lab": "meta",
+    "price": 1.5,
+    "reasoning": true,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "perceptron/perceptron-mk1",
+    "lab": "perceptron",
+    "price": 1.5,
+    "reasoning": true,
+    "usable": true,
+    "provider": "Perceptron",
+    "quant": "unknown",
+    "mode": "reasoning (disable OK)"
+  },
+  {
+    "id": "aion-labs/aion-2.0",
+    "lab": "aion-labs",
+    "price": 1.5999999999999999,
+    "reasoning": true,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "morph/morph-v3-large",
+    "lab": "morph",
+    "price": 1.9,
+    "reasoning": false,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "x-ai/grok-build-0.1",
+    "lab": "x-ai",
+    "price": 2.0,
+    "reasoning": true,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "bytedance-seed/seed-2.0-lite",
+    "lab": "bytedance-seed",
+    "price": 2.0,
+    "reasoning": true,
+    "usable": true,
+    "provider": "Seed",
+    "quant": "fp8",
+    "mode": "reasoning (disable OK)"
+  },
+  {
+    "id": "bytedance-seed/seed-1.6",
+    "lab": "bytedance-seed",
+    "price": 2.0,
+    "reasoning": true,
+    "usable": true,
+    "provider": "Seed",
+    "quant": "fp8",
+    "mode": "reasoning (disable OK)"
+  },
+  {
+    "id": "moonshotai/kimi-k2.5",
+    "lab": "moonshotai",
+    "price": 2.25,
+    "reasoning": true,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "moonshotai/kimi-k2",
+    "lab": "moonshotai",
+    "price": 2.3,
+    "reasoning": false,
+    "usable": true,
+    "provider": "Novita",
+    "quant": "fp8",
+    "mode": "instruct (no reasoning channel)"
+  },
+  {
+    "id": "x-ai/grok-4.3",
+    "lab": "x-ai",
+    "price": 2.5,
+    "reasoning": true,
+    "usable": true,
+    "provider": "xAI",
+    "quant": "unknown",
+    "mode": "reasoning (disable OK)"
+  },
+  {
+    "id": "x-ai/grok-4.20-multi-agent",
+    "lab": "x-ai",
+    "price": 2.5,
+    "reasoning": true,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "x-ai/grok-4.20",
+    "lab": "x-ai",
+    "price": 2.5,
+    "reasoning": true,
+    "usable": true,
+    "provider": "xAI",
+    "quant": "unknown",
+    "mode": "reasoning (disable OK)"
+  },
+  {
+    "id": "amazon/nova-2-lite-v1",
+    "lab": "amazon",
+    "price": 2.5,
+    "reasoning": true,
+    "usable": true,
+    "provider": "Amazon Bedrock",
+    "quant": "unknown",
+    "mode": "reasoning (disable OK)"
+  },
+  {
+    "id": "moonshotai/kimi-k2-thinking",
+    "lab": "moonshotai",
+    "price": 2.5,
+    "reasoning": true,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "moonshotai/kimi-k2-0905",
+    "lab": "moonshotai",
+    "price": 2.5,
+    "reasoning": false,
+    "usable": true,
+    "provider": "Novita",
+    "quant": "fp8",
+    "mode": "instruct (no reasoning channel)"
+  },
+  {
+    "id": "relace/relace-search",
+    "lab": "relace",
+    "price": 3.0,
+    "reasoning": false,
+    "usable": false,
+    "why": "no provider passed both"
+  },
+  {
+    "id": "nousresearch/hermes-4-405b",
+    "lab": "nousresearch",
+    "price": 3.0,
+    "reasoning": true,
+    "usable": true,
+    "provider": "Nebius",
+    "quant": "fp8",
+    "mode": "reasoning (disable OK)"
+  }
+]

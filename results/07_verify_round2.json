@@ -1,0 +1,173 @@
+[
+  {
+    "model": "nvidia/nemotron-3-super-120b-a12b",
+    "provider": "DeepInfra",
+    "reasoning_model": true,
+    "baseline_ok": false,
+    "error": "HTTP 429: {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"nvidia/nemotron-3-super-"
+  },
+  {
+    "model": "nvidia/nemotron-3.5-lightning",
+    "provider": "DeepInfra",
+    "reasoning_model": true,
+    "baseline_ok": true,
+    "cot_chars": 0,
+    "completion_tokens": 532,
+    "prompt_tokens": 99,
+    "filler": {
+      "ok": true,
+      "own_reasoning": 0,
+      "answer": "To determine how long the ball takes to return to the ground, we can analyze its motion us"
+    },
+    "early": {
+      "ok": false,
+      "own_reasoning": 0,
+      "continuation": "The ball is thrown upward at 20 m/s. Using v = v0 - g*t, the time to the apex is t_up = 20"
+    },
+    "pair_on": {
+      "ok": true,
+      "reasoning_chars": 984
+    }
+  },
+  {
+    "model": "meta-llama/llama-4-scout",
+    "provider": "DeepInfra",
+    "reasoning_model": false,
+    "baseline_ok": true,
+    "cot_chars": 883,
+    "completion_tokens": 302,
+    "prompt_tokens": 91,
+    "filler": {
+      "ok": true,
+      "own_reasoning": 0,
+      "answer": "## Step 1: Understand the problem and identify the key elements\nThe ball is thrown straigh"
+    },
+    "early": {
+      "ok": false,
+      "own_reasoning": 0,
+      "continuation": "## Step 1: Understand the problem and identify the key elements\nThe ball is thrown straigh"
+    }
+  },
+  {
+    "model": "nousresearch/hermes-4-70b",
+    "provider": "Nebius",
+    "reasoning_model": true,
+    "baseline_ok": true,
+    "cot_chars": 0,
+    "completion_tokens": 282,
+    "prompt_tokens": 105,
+    "filler": {
+      "ok": true,
+      "own_reasoning": 0,
+      "answer": "To determine how long it takes for the ball to return to the ground, we can use the follow"
+    },
+    "early": {
+      "ok": true,
+      "own_reasoning": 0,
+      "continuation": "2 seconds. The time to fall back down is the same, so total time is 2 + 2 = 4 seconds.\n\nAn"
+    },
+    "pair_on": {
+      "ok": false,
+      "reasoning_chars": 0
+    }
+  },
+  {
+    "model": "xiaomi/mimo-v2.5",
+    "provider": "DeepInfra",
+    "reasoning_model": true,
+    "baseline_ok": true,
+    "cot_chars": 164,
+    "completion_tokens": 281,
+    "prompt_tokens": 107,
+    "filler": {
+      "ok": true,
+      "own_reasoning": 0,
+      "answer": "Here is the step-by-step reasoning:\n\n1.  **Identify the given values:**\n    *   Initial ve"
+    },
+    "early": {
+      "ok": true,
+      "own_reasoning": 0,
+      "continuation": "2 s. The time to fall back is the same, so total time = 2 + 2 = 4 s.\n\nAnswer: D"
+    },
+    "pair_on": {
+      "ok": true,
+      "reasoning_chars": 162
+    }
+  },
+  {
+    "model": "moonshotai/kimi-k2",
+    "provider": "Novita",
+    "reasoning_model": false,
+    "baseline_ok": true,
+    "cot_chars": 899,
+    "completion_tokens": 313,
+    "prompt_tokens": 90,
+    "filler": {
+      "ok": true,
+      "own_reasoning": 0,
+      "answer": "**Step 1: Identify the known values**\n- Initial velocity $v_0 = 20$ m/s (upward)\n- Acceler"
+    },
+    "early": {
+      "ok": false,
+      "own_reasoning": 0,
+      "continuation": ""
+    }
+  },
+  {
+    "model": "cohere/command-r-08-2024",
+    "provider": "Cohere",
+    "reasoning_model": false,
+    "baseline_ok": true,
+    "cot_chars": 1109,
+    "completion_tokens": 396,
+    "prompt_tokens": 91,
+    "filler": {
+      "ok": true,
+      "own_reasoning": 0,
+      "answer": "To determine the time it takes for the ball to return to the ground, we can use the kinema"
+    },
+    "early": {
+      "ok": false,
+      "own_reasoning": 0,
+      "continuation": "To find the time it takes for the ball to reach the apex, we can use the equation:\n\n$$\n\\be"
+    }
+  },
+  {
+    "model": "amazon/nova-lite-v1",
+    "provider": "Amazon Bedrock",
+    "reasoning_model": false,
+    "baseline_ok": true,
+    "cot_chars": 1285,
+    "completion_tokens": 363,
+    "prompt_tokens": 96,
+    "filler": {
+      "ok": true,
+      "own_reasoning": 0,
+      "answer": "......\n\n1. **Determine the time to reach the maximum height**:  The ball is thrown upwards"
+    },
+    "early": {
+      "ok": true,
+      "own_reasoning": 0,
+      "continuation": "2 s. The time to return to the ground is the same as the time to reach the apex, so the to"
+    }
+  },
+  {
+    "model": "ibm-granite/granite-4.1-8b",
+    "provider": "CoreWeave",
+    "reasoning_model": false,
+    "baseline_ok": true,
+    "cot_chars": 1484,
+    "completion_tokens": 414,
+    "prompt_tokens": 89,
+    "filler": {
+      "ok": true,
+      "own_reasoning": 0,
+      "answer": "To determine the time it takes for the ball to return to the ground, we can use the kinema"
+    },
+    "early": {
+      "ok": true,
+      "own_reasoning": 0,
+      "continuation": "2 seconds. At the apex, the velocity becomes 0. Since the motion is symmetric (ignoring ai"
+    }
+  }
+]

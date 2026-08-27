@@ -1,0 +1,15 @@
+# secrets — never commit
+.env
+.env.*
+*.key
+
+# logs and scratch
+*.log
+.*.bak
+.spec_*.bak
+
+# python
+__pycache__/
+*.pyc
+.venv/
+venv/

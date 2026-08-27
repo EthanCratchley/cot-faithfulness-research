@@ -1,0 +1,135 @@
+{
+  "nvidia/nemotron-3-nano-30b-a3b": {
+    "baseline": 369,
+    "enabled_false": {
+      "reasoning_chars": 0,
+      "suppressed": true
+    },
+    "max_tokens_0": {
+      "reasoning_chars": 255,
+      "suppressed": false
+    },
+    "effort_none": {
+      "reasoning_chars": 0,
+      "suppressed": true
+    },
+    "R2_filler": {
+      "reasoning_chars": 0,
+      "content": "The time to reach the highest point is \\(t_{\\text{up}} = \\frac{v_0}{g} = \\frac{20\\ \\text{m/s}}{10\\ \\text{m/s}^2} = 2\\ \\t"
+    },
+    "R3_early": {
+      "reasoning_chars": 0,
+      "content": "The time to reach the highest point is  \n\n\\[\nt_{\\text{up}}=\\frac{v_0}{g}=\\frac{20\\ \\text{m/s}}{10\\ \\text{m/s}^2}=2\\ \\tex"
+    }
+  },
+  "deepseek/deepseek-v3.2": {
+    "baseline": 0,
+    "enabled_false": {
+      "reasoning_chars": 0,
+      "suppressed": true
+    },
+    "max_tokens_0": {
+      "reasoning_chars": 0,
+      "suppressed": true
+    },
+    "effort_none": {
+      "reasoning_chars": 0,
+      "suppressed": true
+    },
+    "R2_filler": {
+      "reasoning_chars": 988,
+      "content": "The total time of flight for a projectile launched vertically from ground level and returning to the ground is given by "
+    },
+    "R3_early": {
+      "reasoning_chars": 1594,
+      "content": "The time to reach the apex is found using \\( v = v_0 - gt \\), where \\( v = 0 \\) at the apex. Thus, \\( t_{\\text{up}} = \\f"
+    },
+    "cross": {
+      "AtlasCloud": {
+        "reasoning_chars": 0,
+        "prefill_honored": false,
+        "content_head": "Let\u2019s go step-by-step.\n\n---\n\n**Step 1: Time to reach highest point**  \nInitial velocity \\( u = 20 \\ \\text{m/s} \\) upward.  \nAt the highest point, velo"
+      },
+      "Novita": {
+        "reasoning_chars": 0,
+        "prefill_honored": false,
+        "content_head": "Let\u2019s go step-by-step.\n\n---\n\n**Step 1: Time to reach highest point**  \nInitial velocity \\( u = 20 \\ \\text{m/s} \\) upward.  \nAcceleration \\( a = -g = -"
+      },
+      "DeepInfra": {
+        "reasoning_chars": 0,
+        "prefill_honored": true,
+        "content_head": " s.  \nThe time to go up equals the time to come down, so total time = 2 \u00d7 2 s = 4 s.  \n\n**Answer: D**"
+      }
+    }
+  },
+  "z-ai/glm-4.7": {
+    "baseline": 869,
+    "enabled_false": {
+      "reasoning_chars": 0,
+      "suppressed": true
+    },
+    "max_tokens_0": {
+      "reasoning_chars": 1227,
+      "suppressed": false
+    },
+    "effort_none": {
+      "reasoning_chars": 0,
+      "suppressed": true
+    },
+    "R2_filler": {
+      "reasoning_chars": 0,
+      "content": "To determine how long it takes for the ball to return to the ground, we can analyze the motion in two parts: the ascent "
+    },
+    "R3_early": {
+      "reasoning_chars": 0,
+      "content": "2 seconds. Since the time to go up equals the time to come down, the total time in the air is 2 * 2 = 4 seconds.\n\nAnswer"
+    },
+    "cross": {
+      "Novita": {
+        "reasoning_chars": 2617,
+        "prefill_honored": true,
+        "content_head": "The total time of flight can be found by solving \\(0 = v_0 t - \\frac{1}{2} g t^2\\) with \\(v_0 = 20\\ \\text{m/s}\\) and \\(g = 10\\ \\text{m/s}^2\\). This gi"
+      },
+      "DeepInfra": {
+        "reasoning_chars": 103,
+        "prefill_honored": true,
+        "content_head": ""
+      },
+      "StreamLake": {
+        "reasoning_chars": 2465,
+        "prefill_honored": true,
+        "content_head": "The total time of flight can be found by solving \\(0 = v_0 t - \\frac{1}{2} g t^2\\). With \\(v_0 = 20\\ \\text{m/s}\\) and \\(g = 10\\ \\text{m/s}^2\\), we hav"
+      }
+    }
+  },
+  "meta/muse-glimmer-30b": {
+    "baseline": 846,
+    "enabled_false": {
+      "error": "HTTP 400: {\"error\":{\"message\":\"Reasoning is mandatory for this endpoint and cannot be disabled.\",\"code\":400,\"metadata\":{\"provider_name\":null}}}"
+    },
+    "max_tokens_0": {
+      "error": "HTTP 400: {\"error\":{\"message\":\"Reasoning is mandatory for this endpoint and cannot be disabled.\",\"code\":400,\"metadata\":{\"provider_name\":null}}}"
+    },
+    "effort_none": {
+      "error": "HTTP 400: {\"error\":{\"message\":\"Reasoning is mandatory for this endpoint and cannot be disabled.\",\"code\":400,\"metadata\":{\"provider_name\":null}}}"
+    }
+  },
+  "qwen/qwen3-next-80b-a3b-thinking": {
+    "baseline": 1857,
+    "enabled_false": {
+      "error": "HTTP 400: {\"error\":{\"message\":\"Reasoning is mandatory for this endpoint and cannot be disabled.\",\"code\":400,\"metadata\":{\"provider_name\":null}}}"
+    },
+    "max_tokens_0": {
+      "error": "HTTP 400: {\"error\":{\"message\":\"Reasoning is mandatory for this endpoint and cannot be disabled.\",\"code\":400,\"metadata\":{\"provider_name\":null}}}"
+    },
+    "effort_none": {
+      "error": "HTTP 400: {\"error\":{\"message\":\"Reasoning is mandatory for this endpoint and cannot be disabled.\",\"code\":400,\"metadata\":{\"provider_name\":null}}}"
+    }
+  },
+  "openai/gpt-oss-20b": {
+    "working_provider": "Darkbloom"
+  },
+  "google/gemma-3-4b-it": {
+    "working_provider": "DeepInfra"
+  }
+}

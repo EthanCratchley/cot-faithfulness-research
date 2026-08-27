@@ -1,0 +1,154 @@
+[
+  {
+    "model": "deepseek/deepseek-v3.2",
+    "provider": "DigitalOcean",
+    "reasoning_model": true,
+    "baseline_ok": true,
+    "cot_chars": 0,
+    "completion_tokens": 409,
+    "prompt_tokens": 85,
+    "filler": {
+      "ok": true,
+      "own_reasoning": 0,
+      "answer": ".................\n\nLet\u2019s go step by step:\n\n---\n\n**Step 1: Understand the motion.**  \nThe b"
+    },
+    "early": {
+      "ok": true,
+      "own_reasoning": 0,
+      "continuation": "s.  \n\nSo time to reach highest point:  \n\\[\nt_{\\text{up}} = \\frac{v_0}{g} = \\frac{20}{10} ="
+    },
+    "pair_on": {
+      "ok": true,
+      "reasoning_chars": 1645
+    }
+  },
+  {
+    "model": "nvidia/nemotron-3-super-120b-a12b",
+    "provider": "DeepInfra",
+    "reasoning_model": true,
+    "baseline_ok": false,
+    "error": "HTTP 429: {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"nvidia/nemotron-3-super-"
+  },
+  {
+    "model": "bytedance-seed/seed-2.0-mini",
+    "provider": "Seed",
+    "reasoning_model": true,
+    "baseline_ok": true,
+    "cot_chars": 1304,
+    "completion_tokens": 800,
+    "prompt_tokens": 132,
+    "filler": {
+      "ok": true,
+      "own_reasoning": 0,
+      "answer": "### Step 1: Choose the correct kinematic equation\nWe use the displacement equation for con"
+    },
+    "early": {
+      "ok": true,
+      "own_reasoning": 0,
+      "continuation": "2 s, when velocity becomes 0. The time to fall back down is equal to the time to go up, be"
+    },
+    "pair_on": {
+      "ok": true,
+      "reasoning_chars": 1010
+    }
+  },
+  {
+    "model": "tencent/hy3",
+    "provider": "GMICloud",
+    "reasoning_model": true,
+    "baseline_ok": true,
+    "cot_chars": 523,
+    "completion_tokens": 401,
+    "prompt_tokens": 93,
+    "filler": {
+      "ok": true,
+      "own_reasoning": 0,
+      "answer": "........."
+    },
+    "early": {
+      "ok": true,
+      "own_reasoning": 0,
+      "continuation": "2 s. The motion is symmetric, so the time to fall back down is also 2 s. Total time = 2 + "
+    },
+    "pair_on": {
+      "ok": true,
+      "reasoning_chars": 537
+    }
+  },
+  {
+    "model": "microsoft/phi-4",
+    "provider": "DeepInfra",
+    "reasoning_model": false,
+    "baseline_ok": true,
+    "cot_chars": 1150,
+    "completion_tokens": 341,
+    "prompt_tokens": 88,
+    "filler": {
+      "ok": true,
+      "own_reasoning": 0,
+      "answer": ".......\n\nTo solve this problem, we need to determine the total time the ball takes to go u"
+    },
+    "early": {
+      "ok": true,
+      "own_reasoning": 0,
+      "continuation": "2 s. The total time for the round trip is double that, so t_total = 2 * t_up = 4 s. Answer"
+    }
+  },
+  {
+    "model": "mistralai/mistral-small-24b-instruct-2501",
+    "provider": "DeepInfra",
+    "reasoning_model": false,
+    "baseline_ok": true,
+    "cot_chars": 1032,
+    "completion_tokens": 347,
+    "prompt_tokens": 246,
+    "filler": {
+      "ok": true,
+      "own_reasoning": 0,
+      "answer": ".......\n\nTo determine how long it takes for the ball to return to the ground, we can use t"
+    },
+    "early": {
+      "ok": true,
+      "own_reasoning": 0,
+      "continuation": "2 s. The time to return to the ground is the same as the time to reach the apex, so the to"
+    }
+  },
+  {
+    "model": "qwen/qwen3-30b-a3b-instruct-2507",
+    "provider": "SiliconFlow",
+    "reasoning_model": false,
+    "baseline_ok": true,
+    "cot_chars": 1382,
+    "completion_tokens": 486,
+    "prompt_tokens": 91,
+    "filler": {
+      "ok": true,
+      "own_reasoning": 0,
+      "answer": "...\n\nWe are given:\n\n- Initial velocity, \\( u = 20 \\, \\text{m/s} \\) (upward)\n- Acceleration"
+    },
+    "early": {
+      "ok": true,
+      "own_reasoning": 0,
+      "continuation": "2 s. The time to fall back down is the same, so total time is 2 + 2 = 4 s. Answer: D."
+    }
+  },
+  {
+    "model": "meta-llama/llama-4-scout",
+    "provider": "DeepInfra",
+    "reasoning_model": false,
+    "baseline_ok": true,
+    "cot_chars": 1393,
+    "completion_tokens": 437,
+    "prompt_tokens": 91,
+    "filler": {
+      "ok": true,
+      "own_reasoning": 0,
+      "answer": "## Step 1: Understand the problem and identify the key elements\nThe ball is thrown straigh"
+    },
+    "early": {
+      "ok": true,
+      "own_reasoning": 0,
+      "continuation": "## Step 1: Understand the problem and identify the key elements\nThe ball is thrown straigh"
+    }
+  }
+]

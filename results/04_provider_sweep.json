@@ -1,0 +1,423 @@
+{
+  "sweep": {
+    "nvidia/nemotron-3-nano-30b-a3b": [
+      {
+        "provider": "DeepInfra",
+        "quant": "fp4",
+        "price": 0.19999999999999998,
+        "prefill": true,
+        "reasoning_disable": true,
+        "note": "0ch",
+        "usable": true
+      },
+      {
+        "provider": "Novita",
+        "quant": "fp4",
+        "price": 0.19999999999999998,
+        "prefill": false,
+        "reasoning_disable": true,
+        "note": "0ch",
+        "usable": false
+      },
+      {
+        "provider": "Crusoe",
+        "quant": "fp8",
+        "price": 0.19999999999999998,
+        "prefill": false,
+        "reasoning_disable": true,
+        "note": "0ch",
+        "usable": false
+      },
+      {
+        "provider": "Nebius",
+        "quant": "fp8",
+        "price": 0.24,
+        "prefill": false,
+        "reasoning_disable": true,
+        "note": "0ch",
+        "usable": false
+      }
+    ],
+    "deepseek/deepseek-v3.2": [
+      {
+        "provider": "GMICloud",
+        "quant": "fp8",
+        "price": 0.30960000000000004,
+        "prefill": false,
+        "reasoning_disable": false,
+        "note": "1742ch",
+        "usable": false
+      },
+      {
+        "provider": "StreamLake",
+        "quant": "fp8",
+        "price": 0.32175,
+        "prefill": false,
+        "reasoning_disable": true,
+        "note": "0ch",
+        "usable": false
+      },
+      {
+        "provider": "DigitalOcean",
+        "quant": "unknown",
+        "price": 0.7999999999999999,
+        "prefill": true,
+        "reasoning_disable": true,
+        "note": "0ch",
+        "usable": true
+      },
+      {
+        "provider": "SiliconFlow",
+        "quant": "fp8",
+        "price": 0.42,
+        "prefill": false,
+        "reasoning_disable": true,
+        "note": "0ch",
+        "usable": false
+      },
+      {
+        "provider": "AtlasCloud",
+        "quant": "fp8",
+        "price": 0.38,
+        "prefill": false,
+        "reasoning_disable": true,
+        "note": "0ch",
+        "usable": false
+      },
+      {
+        "provider": "DeepInfra",
+        "quant": "fp4",
+        "price": 0.38,
+        "prefill": true,
+        "reasoning_disable": true,
+        "note": "0ch",
+        "usable": true
+      },
+      {
+        "provider": "Novita",
+        "quant": "fp8",
+        "price": 0.39999999999999997,
+        "prefill": false,
+        "reasoning_disable": true,
+        "note": "0ch",
+        "usable": false
+      },
+      {
+        "provider": "Baidu",
+        "quant": "fp8",
+        "price": 0.42,
+        "prefill": false,
+        "reasoning_disable": true,
+        "note": "0ch",
+        "usable": false
+      },
+      {
+        "provider": "Venice",
+        "quant": "unknown",
+        "price": 0.48,
+        "prefill": true,
+        "reasoning_disable": true,
+        "note": "0ch",
+        "usable": true
+      },
+      {
+        "provider": "Alibaba",
+        "quant": "fp8",
+        "price": 1.1115000000000002,
+        "prefill": true,
+        "reasoning_disable": true,
+        "note": "0ch",
+        "usable": true
+      },
+      {
+        "provider": "Friendli",
+        "quant": "unknown",
+        "price": 1.5,
+        "prefill": true,
+        "reasoning_disable": true,
+        "note": "0ch",
+        "usable": true
+      },
+      {
+        "provider": "Phala",
+        "quant": "unknown",
+        "price": 1.0,
+        "prefill": false,
+        "reasoning_disable": true,
+        "note": "0ch",
+        "usable": false
+      },
+      {
+        "provider": "SambaNova",
+        "quant": "unknown",
+        "price": 4.5,
+        "prefill": true,
+        "reasoning_disable": true,
+        "note": "0ch",
+        "usable": true
+      }
+    ],
+    "z-ai/glm-4.7": [
+      {
+        "provider": "DeepInfra",
+        "quant": "fp4",
+        "price": 1.75,
+        "prefill": false,
+        "reasoning_disable": true,
+        "note": "0ch",
+        "usable": false
+      },
+      {
+        "provider": "StreamLake",
+        "quant": "fp8",
+        "price": 1.76,
+        "prefill": false,
+        "reasoning_disable": false,
+        "note": "1201ch",
+        "usable": false
+      },
+      {
+        "provider": "AtlasCloud",
+        "quant": "fp8",
+        "price": 1.85,
+        "prefill": false,
+        "reasoning_disable": true,
+        "note": "0ch",
+        "usable": false
+      },
+      {
+        "provider": "Novita",
+        "quant": "fp8",
+        "price": 1.9800000000000002,
+        "prefill": false,
+        "reasoning_disable": true,
+        "note": "0ch",
+        "usable": false
+      },
+      {
+        "provider": "Venice",
+        "quant": "fp4",
+        "price": 2.65,
+        "prefill": false,
+        "reasoning_disable": true,
+        "note": "0ch",
+        "usable": false
+      },
+      {
+        "provider": "Z.AI",
+        "quant": "fp4",
+        "price": 2.2,
+        "prefill": false,
+        "reasoning_disable": true,
+        "note": "0ch",
+        "usable": false
+      },
+      {
+        "provider": "Google",
+        "quant": "unknown",
+        "price": 2.2,
+        "prefill": false,
+        "reasoning_disable": true,
+        "note": "0ch",
+        "usable": false
+      }
+    ],
+    "meta/muse-glimmer-30b": [
+      {
+        "provider": "Phala",
+        "quant": "unknown",
+        "price": 1.1,
+        "prefill": true,
+        "reasoning_disable": false,
+        "note": "400:{\"error\":{\"message\":",
+        "usable": false
+      },
+      {
+        "provider": "Parasail",
+        "quant": "bf16",
+        "price": 1.1,
+        "prefill": true,
+        "reasoning_disable": false,
+        "note": "400:{\"error\":{\"message\":",
+        "usable": false
+      },
+      {
+        "provider": "DeepInfra",
+        "quant": "bf16",
+        "price": 1.2,
+        "prefill": true,
+        "reasoning_disable": false,
+        "note": "400:{\"error\":{\"message\":",
+        "usable": false
+      },
+      {
+        "provider": "Together",
+        "quant": "unknown",
+        "price": 1.5,
+        "prefill": true,
+        "reasoning_disable": false,
+        "note": "400:{\"error\":{\"message\":",
+        "usable": false
+      },
+      {
+        "provider": "Fireworks",
+        "quant": "unknown",
+        "price": 1.5,
+        "prefill": true,
+        "reasoning_disable": false,
+        "note": "400:{\"error\":{\"message\":",
+        "usable": false
+      }
+    ],
+    "qwen/qwen3-next-80b-a3b-thinking": [
+      {
+        "provider": "Alibaba",
+        "quant": "unknown",
+        "price": 1.2,
+        "prefill": false,
+        "reasoning_disable": false,
+        "note": "400:{\"error\":{\"message\":",
+        "usable": false
+      },
+      {
+        "provider": "Nebius",
+        "quant": "fp8",
+        "price": 1.2,
+        "prefill": false,
+        "reasoning_disable": false,
+        "note": "400:{\"error\":{\"message\":",
+        "usable": false
+      },
+      {
+        "provider": "Google",
+        "quant": "unknown",
+        "price": 1.2,
+        "prefill": false,
+        "reasoning_disable": false,
+        "note": "400:{\"error\":{\"message\":",
+        "usable": false
+      }
+    ],
+    "openai/gpt-oss-20b": [
+      {
+        "provider": "Darkbloom",
+        "quant": "fp8",
+        "price": 0.09999999999999999,
+        "prefill": false,
+        "reasoning_disable": false,
+        "note": "400:{\"error\":{\"message\":",
+        "usable": false
+      },
+      {
+        "provider": "CoreWeave",
+        "quant": "fp4",
+        "price": 0.13,
+        "prefill": false,
+        "reasoning_disable": false,
+        "note": "400:{\"error\":{\"message\":",
+        "usable": false
+      },
+      {
+        "provider": "DeepInfra",
+        "quant": "bf16",
+        "price": 0.14,
+        "prefill": false,
+        "reasoning_disable": false,
+        "note": "400:{\"error\":{\"message\":",
+        "usable": false
+      },
+      {
+        "provider": "Parasail",
+        "quant": "fp4",
+        "price": 0.15,
+        "prefill": true,
+        "reasoning_disable": false,
+        "note": "400:{\"error\":{\"message\":",
+        "usable": false
+      },
+      {
+        "provider": "Phala",
+        "quant": "unknown",
+        "price": 0.15,
+        "prefill": false,
+        "reasoning_disable": false,
+        "note": "400:{\"error\":{\"message\":",
+        "usable": false
+      },
+      {
+        "provider": "Novita",
+        "quant": "fp4",
+        "price": 0.15,
+        "prefill": false,
+        "reasoning_disable": false,
+        "note": "400:{\"error\":{\"message\":",
+        "usable": false
+      },
+      {
+        "provider": "SiliconFlow",
+        "quant": "fp8",
+        "price": 0.18,
+        "prefill": true,
+        "reasoning_disable": false,
+        "note": "400:{\"error\":{\"message\":",
+        "usable": false
+      },
+      {
+        "provider": "Amazon Bedrock",
+        "quant": "unknown",
+        "price": 0.15,
+        "prefill": true,
+        "reasoning_disable": false,
+        "note": "400:{\"error\":{\"message\":",
+        "usable": false
+      },
+      {
+        "provider": "Google",
+        "quant": "unknown",
+        "price": 0.25,
+        "prefill": false,
+        "reasoning_disable": false,
+        "note": "400:{\"error\":{\"message\":",
+        "usable": false
+      },
+      {
+        "provider": "Fireworks",
+        "quant": "unknown",
+        "price": 0.3,
+        "prefill": false,
+        "reasoning_disable": false,
+        "note": "400:{\"error\":{\"message\":",
+        "usable": false
+      },
+      {
+        "provider": "Groq",
+        "quant": "unknown",
+        "price": 0.3,
+        "prefill": false,
+        "reasoning_disable": false,
+        "note": "400:{\"error\":{\"message\":",
+        "usable": false
+      }
+    ]
+  },
+  "final": {
+    "nvidia/nemotron-3-nano-30b-a3b": {
+      "provider": "DeepInfra",
+      "price": 0.19999999999999998,
+      "quant": "fp4",
+      "filler_ok": true,
+      "early_ok": true
+    },
+    "deepseek/deepseek-v3.2": {
+      "provider": "DeepInfra",
+      "price": 0.38,
+      "quant": "fp4",
+      "filler_ok": true,
+      "early_ok": true
+    },
+    "z-ai/glm-4.7": null,
+    "meta/muse-glimmer-30b": null,
+    "qwen/qwen3-next-80b-a3b-thinking": null,
+    "openai/gpt-oss-20b": null
+  }
+}

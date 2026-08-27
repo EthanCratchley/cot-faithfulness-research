@@ -1,0 +1,438 @@
+[
+  {
+    "model": "google/gemma-4-26b-a4b-it",
+    "pinned_provider": "Parasail",
+    "A_baseline": {
+      "ok": true,
+      "served_by": "Parasail",
+      "provider_matches_pin": true,
+      "has_reasoning_field": false,
+      "reasoning_chars": 0,
+      "reasoning_head": "",
+      "content_head": "To find the total time the ball is in the air, we can follow these steps:\n\n**Step 1: Identify the given values.**\n*   Initial velocity ($u$) = $20\\text{ m/s}$ (upward)\n*   Acceleration due to gravity ",
+      "usage": {
+        "prompt_tokens": 104,
+        "completion_tokens": 491,
+        "total_tokens": 595,
+        "cost": 0.00020992,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.00020992,
+          "upstream_inference_prompt_cost": 1.352e-05,
+          "upstream_inference_completions_cost": 0.0001964
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    },
+    "B_content_prefill": {
+      "ok": true,
+      "continued": true,
+      "content_head": "To find the total time the ball is in the air, we can follow these steps:\n\n**Step 1: Identify the given values.**\n*   In"
+    },
+    "C_reasoning_prefill": {
+      "ok": true,
+      "echoed_our_reasoning": false,
+      "reasoning_chars": 0,
+      "content_head": "To find the total time the ball is in the air, we can follow these steps:\n\n**1. Identify the given values:**\n*   Initial"
+    },
+    "D_filler_gate": {
+      "ok": true,
+      "reasoning_chars_returned": 0,
+      "own_reasoning_chars": 0,
+      "baseline_reasoning_chars": 0,
+      "skipped_own_thinking": true,
+      "reasoning_head": "",
+      "content_head": "To find the total time the ball is in the air, we can follow these steps:\n\n**Step 1: Identify the given values.**\n*   In"
+    },
+    "E_logprobs": {
+      "ok": true,
+      "returned": true
+    }
+  },
+  {
+    "model": "openai/gpt-oss-20b",
+    "pinned_provider": "DeepInfra",
+    "A_baseline": {
+      "ok": false,
+      "error": "HTTP 429: {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"openai/gpt-oss-20b is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations\",\"provider_name\":\"DeepInfra\",\"is_byok\":false,\"pro"
+    }
+  },
+  {
+    "model": "nvidia/nemotron-3-nano-30b-a3b",
+    "pinned_provider": "Crusoe",
+    "A_baseline": {
+      "ok": true,
+      "served_by": "Crusoe",
+      "provider_matches_pin": true,
+      "has_reasoning_field": true,
+      "reasoning_chars": 275,
+      "reasoning_head": "We need to solve physics problem: ball thrown upward with initial velocity 20 m/s, g=10 m/s^2 downward. Time to return to ground: total time of flight = 2 * (initial velocity / g) = 2 * (20/10) = 4 s.",
+      "content_head": "\n**Step\u2011by\u2011step reasoning**\n\n1. **Identify the motion:**  \n   The ball is thrown upward with an initial speed \\(v_0 = 20\\ \\text{m/s}\\).  \n   The only acceleration is gravity, directed downward, with m",
+      "usage": {
+        "prompt_tokens": 99,
+        "completion_tokens": 382,
+        "total_tokens": 481,
+        "cost": 8.135e-05,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 8.135e-05,
+          "upstream_inference_prompt_cost": 4.95e-06,
+          "upstream_inference_completions_cost": 7.64e-05
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 69,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    },
+    "B_content_prefill": {
+      "ok": true,
+      "continued": true,
+      "content_head": "\nThe motion is described by  \n\n\\[\ny(t)=v_0 t-\\frac{1}{2}gt^2,\n\\]\n\nwhere \\(v_0 = 20\\ \\text{m/s}\\) upward and \\(g = 10\\ \\t"
+    },
+    "C_reasoning_prefill": {
+      "ok": true,
+      "echoed_our_reasoning": false,
+      "reasoning_chars": 442,
+      "content_head": "\nThe motion can be described by the kinematic equation for vertical displacement (taking upward as positive):\n\n\\[\ny(t)=v"
+    },
+    "D_filler_gate": {
+      "ok": true,
+      "reasoning_chars_returned": 508,
+      "own_reasoning_chars": 496,
+      "baseline_reasoning_chars": 275,
+      "skipped_own_thinking": false,
+      "reasoning_head": "We need to solve physics problem: ball thrown upward with initial velocity u = 20 m/s, from ground level, acceleration due to gravity g = 10 m/s^2 downward. Find total time until it returns to ground ",
+      "content_head": "\nThe displacement after time \\(t\\) is  \n\n\\[\ns = ut + \\frac{1}{2} a t^2 = 20t - \\frac{1}{2}(10)t^2 = 20t - 5t^2.\n\\]\n\nSett"
+    },
+    "E_logprobs": {
+      "ok": true,
+      "returned": false
+    }
+  },
+  {
+    "model": "deepseek/deepseek-v3.2",
+    "pinned_provider": "GMICloud",
+    "A_baseline": {
+      "ok": true,
+      "served_by": "GMICloud",
+      "provider_matches_pin": true,
+      "has_reasoning_field": true,
+      "reasoning_chars": 1917,
+      "reasoning_head": "We are given: \"A ball is thrown straight up at 20 m/s from ground level. Taking g = 10 m/s^2 and ignoring air resistance, how long until it returns to the ground? (A) 1 s (B) 2 s (C) 3 s (D) 4 s (E) 5",
+      "content_head": "The ball is thrown upward with an initial velocity of 20 m/s. The acceleration due to gravity is 10 m/s\u00b2 downward. The time to reach maximum height is given by \\( t_{\\text{up}} = \\frac{v_0}{g} = \\frac",
+      "usage": {
+        "prompt_tokens": 91,
+        "completion_tokens": 771,
+        "total_tokens": 862,
+        "cost": 0.0002577024,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0002577024,
+          "upstream_inference_prompt_cost": 1.90008e-05,
+          "upstream_inference_completions_cost": 0.0002387016
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    },
+    "B_content_prefill": {
+      "ok": true,
+      "continued": true,
+      "content_head": "The ball is thrown upward with an initial velocity of 20 m/s. The time to reach the highest point is found by setting th"
+    },
+    "C_reasoning_prefill": {
+      "ok": true,
+      "echoed_our_reasoning": false,
+      "reasoning_chars": 2565,
+      "content_head": "The ball is thrown upward with an initial velocity of 20 m/s. The time to reach maximum height is \\( t_{\\text{up}} = \\fr"
+    },
+    "D_filler_gate": {
+      "ok": true,
+      "reasoning_chars_returned": 1269,
+      "own_reasoning_chars": 1251,
+      "baseline_reasoning_chars": 1917,
+      "skipped_own_thinking": false,
+      "reasoning_head": "We are given: \"A ball is thrown straight up at 20 m/s from ground level. Taking g = 10 m/s^2 and ignoring air resistance, how long until it returns to the ground? (A) 1 s (B) 2 s (C) 3 s (D) 4 s (E) 5",
+      "content_head": "The ball is thrown upward with an initial velocity of 20 m/s. The time to reach maximum height is given by \\( t_{\\text{u"
+    },
+    "E_logprobs": {
+      "ok": true,
+      "returned": false
+    }
+  },
+  {
+    "model": "z-ai/glm-4.7",
+    "pinned_provider": "AtlasCloud",
+    "A_baseline": {
+      "ok": true,
+      "served_by": "AtlasCloud",
+      "provider_matches_pin": true,
+      "has_reasoning_field": true,
+      "reasoning_chars": 1777,
+      "reasoning_head": "We are asked: \"A ball is thrown straight up at 20 m/s from ground level. Taking g = 10 m/s^2 and ignoring air resistance, how long until it returns to the ground?\" Options: 1,2,3,4,5 seconds.\n\nWe need",
+      "content_head": "The ball is thrown upward with initial velocity \\( u = 20 \\, \\text{m/s} \\). Acceleration due to gravity is \\( g = 10 \\, \\text{m/s}^2 \\) downward. The time to reach maximum height is found by setting f",
+      "usage": {
+        "prompt_tokens": 93,
+        "completion_tokens": 805,
+        "total_tokens": 898,
+        "cost": 0.00153761,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.00153761,
+          "upstream_inference_prompt_cost": 4.836e-05,
+          "upstream_inference_completions_cost": 0.00148925
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 509,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    },
+    "B_content_prefill": {
+      "ok": true,
+      "continued": true,
+      "content_head": "To find the total time the ball is in the air, we can use the kinematic equation for vertical displacement:\n\n$$y = y_0 +"
+    },
+    "C_reasoning_prefill": {
+      "ok": true,
+      "echoed_our_reasoning": false,
+      "reasoning_chars": 1567,
+      "content_head": "The ball is thrown upward with initial velocity \\( u = 20 \\, \\text{m/s} \\). Acceleration due to gravity is \\( g = 10 \\, "
+    },
+    "D_filler_gate": {
+      "ok": true,
+      "reasoning_chars_returned": 1765,
+      "own_reasoning_chars": 1736,
+      "baseline_reasoning_chars": 1777,
+      "skipped_own_thinking": false,
+      "reasoning_head": "We are asked: \"A ball is thrown straight up at 20 m/s from ground level. Taking g = 10 m/s^2 and ignoring air resistance, how long until it returns to the ground?\" Options: 1,2,3,4,5 seconds.\n\nWe need",
+      "content_head": "The ball is thrown upward with initial velocity \\( u = 20 \\, \\text{m/s} \\). Acceleration due to gravity is \\( g = 10 \\, "
+    },
+    "E_logprobs": {
+      "ok": true,
+      "returned": false
+    }
+  },
+  {
+    "model": "meta/muse-glimmer-30b",
+    "pinned_provider": "Parasail",
+    "A_baseline": {
+      "ok": true,
+      "served_by": "Parasail",
+      "provider_matches_pin": true,
+      "has_reasoning_field": true,
+      "reasoning_chars": 1407,
+      "reasoning_head": "A ball is thrown straight up at 20 m/s from ground level. Taking g = 10 m/s^2 and ignoring air resistance, how long until it returns to the ground?\n(A) 1 s\n(B) 2 s\n(C) 3 s\n(D) 4 s\n(E) 5 s\nReason step ",
+      "content_head": "Initial velocity upward: $v_0 = +20\\;{\\rm m/s}$\nAcceleration: $a = -g = -10\\;{\\rm m/s^2}$\n\nTime to zero velocity at the top:\n$v = v_0 + a t_{up}=0$\n$t_{up}= -v_0/a = 20/10 = 2\\;{\\rm s}$\n\nThe descent t",
+      "usage": {
+        "prompt_tokens": 137,
+        "completion_tokens": 670,
+        "total_tokens": 807,
+        "cost": 0.0007781,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 48,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0007781,
+          "upstream_inference_prompt_cost": 4.11e-05,
+          "upstream_inference_completions_cost": 0.000737
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 463,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    },
+    "B_content_prefill": {
+      "ok": true,
+      "continued": true,
+      "content_head": "Upward motion: $v = v_0 - g t$\n\nTime to top $v=0$:\n$0 = 20 - 10 t_{up}$\n$t_{up}=20/10 = 2\\;{\\rm s}$\n\nThe motion is symme"
+    },
+    "C_reasoning_prefill": {
+      "ok": true,
+      "echoed_our_reasoning": false,
+      "reasoning_chars": 0,
+      "content_head": "Time to reach max height: $v = v_0 - g t$\n\nAt top $v = 0$\n\n$0 = 20 - 10 t_{up}$\n\n$t_{up} = 20/10 = 2\\ \\text{s}$\n\nTime do"
+    },
+    "D_filler_gate": {
+      "ok": true,
+      "reasoning_chars_returned": 0,
+      "own_reasoning_chars": 0,
+      "baseline_reasoning_chars": 1407,
+      "skipped_own_thinking": true,
+      "reasoning_head": "",
+      "content_head": "Upward motion: $v = v_0 - g t$\n\nAt top $v = 0$:\n$0 = 20 - 10 t_{up}$\n$t_{up} = 20/10 = 2\\ \\text{s}$\n\nTime down = time up"
+    },
+    "E_logprobs": {
+      "ok": true,
+      "returned": true
+    }
+  },
+  {
+    "model": "qwen/qwen3-next-80b-a3b-instruct",
+    "pinned_provider": "Alibaba",
+    "A_baseline": {
+      "ok": true,
+      "served_by": "Alibaba",
+      "provider_matches_pin": true,
+      "has_reasoning_field": false,
+      "reasoning_chars": 0,
+      "reasoning_head": "",
+      "content_head": "We are given:\n\n- Initial velocity, $ v_0 = 20 $ m/s (upward)\n- Acceleration due to gravity, $ g = 10 $ m/s\u00b2 (downward)\n- The ball is thrown from ground level and returns to ground level.\n- Air resista",
+      "usage": {
+        "prompt_tokens": 91,
+        "completion_tokens": 455,
+        "total_tokens": 546,
+        "cost": 0.0003637725,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.0003637725,
+          "upstream_inference_prompt_cost": 8.8725e-06,
+          "upstream_inference_completions_cost": 0.0003549
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    },
+    "B_content_prefill": {
+      "ok": true,
+      "continued": true,
+      "content_head": "We are given:\n\n- Initial velocity, $ v_0 = 20 \\, \\text{m/s} $ (upward)\n- Acceleration due to gravity, $ g = 10 \\, \\text{"
+    },
+    "C_reasoning_prefill": {
+      "ok": true,
+      "echoed_our_reasoning": false,
+      "reasoning_chars": 0,
+      "content_head": "We are given:\n\n- Initial velocity, $ v_0 = 20 $ m/s (upward)\n- Acceleration due to gravity, $ g = 10 $ m/s\u00b2 (downward)\n-"
+    },
+    "D_filler_gate": {
+      "ok": true,
+      "reasoning_chars_returned": 0,
+      "own_reasoning_chars": 0,
+      "baseline_reasoning_chars": 0,
+      "skipped_own_thinking": true,
+      "reasoning_head": "",
+      "content_head": "We are given:\n\n- Initial velocity, $ v_0 = 20 $ m/s (upward)\n- Acceleration due to gravity, $ g = 10 $ m/s\u00b2 (downward)\n-"
+    },
+    "E_logprobs": {
+      "ok": true,
+      "returned": true
+    }
+  },
+  {
+    "model": "qwen/qwen3-next-80b-a3b-thinking",
+    "pinned_provider": "Alibaba",
+    "A_baseline": {
+      "ok": true,
+      "served_by": "Alibaba",
+      "provider_matches_pin": true,
+      "has_reasoning_field": true,
+      "reasoning_chars": 1946,
+      "reasoning_head": "Okay, let's see. The problem is about a ball thrown straight up at 20 m/s from ground level, and we need to find how long until it returns to the ground. Hmm. So, when you throw something straight up,",
+      "content_head": "To determine how long the ball remains in the air before returning to the ground, we analyze its motion under constant acceleration due to gravity.\n\n---\n\n### Step 1: Understand the Motion\n\n- The ball ",
+      "usage": {
+        "prompt_tokens": 91,
+        "completion_tokens": 994,
+        "total_tokens": 1085,
+        "cost": 0.00120645,
+        "is_byok": false,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 0,
+          "audio_tokens": 0,
+          "video_tokens": 0
+        },
+        "cost_details": {
+          "upstream_inference_cost": 0.00120645,
+          "upstream_inference_prompt_cost": 1.365e-05,
+          "upstream_inference_completions_cost": 0.0011928
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 564,
+          "image_tokens": 0,
+          "audio_tokens": 0
+        }
+      }
+    },
+    "B_content_prefill": {
+      "ok": true,
+      "continued": true,
+      "content_head": "To determine how long the ball remains in the air before returning to the ground, we analyze the motion under constant a"
+    },
+    "C_reasoning_prefill": {
+      "ok": true,
+      "echoed_our_reasoning": false,
+      "reasoning_chars": 1712,
+      "content_head": "To determine how long it takes for the ball to return to the ground, we analyze the motion under constant acceleration d"
+    },
+    "D_filler_gate": {
+      "ok": true,
+      "reasoning_chars_returned": 1712,
+      "own_reasoning_chars": 1686,
+      "baseline_reasoning_chars": 1946,
+      "skipped_own_thinking": false,
+      "reasoning_head": "Okay, let's see. The problem is about a ball thrown straight up at 20 m/s from ground level, and we need to find how long until it returns to the ground. Hmm. So, this is a projectile motion problem, ",
+      "content_head": "To determine how long it takes for the ball to return to the ground, we analyze the motion under constant acceleration d"
+    },
+    "E_logprobs": {
+      "ok": true,
+      "returned": false
+    }
+  },
+  {
+    "model": "google/gemma-3-4b-it",
+    "pinned_provider": "DeepInfra",
+    "A_baseline": {
+      "ok": false,
+      "error": "HTTP 429: {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-3-4b-it is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate limits: https://openrouter.ai/settings/integrations\",\"provider_name\":\"DeepInfra\",\"is_byok\":false,\"p"
+    }
+  }
+]

@@ -1,0 +1,129 @@
+{
+  "openai/gpt-oss-20b": {
+    "baseline": {
+      "ok": false,
+      "error": "HTTP 429: {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"openai/gpt-oss-20b is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate l"
+    }
+  },
+  "google/gemma-3-4b-it": {
+    "baseline": {
+      "ok": false,
+      "error": "HTTP 429: {\"error\":{\"message\":\"Provider returned error\",\"code\":429,\"metadata\":{\"raw\":\"google/gemma-3-4b-it is temporarily rate-limited upstream. Please retry shortly, or add your own key to accumulate your rate"
+    }
+  },
+  "nvidia/nemotron-3-nano-30b-a3b": {
+    "baseline_reasoning_chars": 275,
+    "B2": {
+      "continued": true,
+      "reasoning_chars": 457,
+      "content_head": "\n**Step\u2011by\u2011step reasoning**\n\n1. **Identify the initial velocity**  \n   The ball is thrown upward with an initial speed \\(v_0 = 20\\ \\text{m/s}\\).\n\n2. *"
+    },
+    "V1": {
+      "reasoning_chars": 453,
+      "suppressed": false,
+      "content_head": "\nThe motion can be described by the kinematic equation for vertical displacement (taking upward as positive):\n\n\\[\ny(t)=v_0 t - \\frac{1}{2} g t^2\n\\]\n\nw"
+    },
+    "V2": {
+      "reasoning_chars": 337,
+      "suppressed": false,
+      "content_head": "\nThe motion is described by the kinematic equation for vertical displacement (taking upward as positive):\n\n\\[\ny(t)=v_0 t - \\frac{1}{2} g t^{2}\n\\]\n\nwhe"
+    },
+    "V3": {
+      "reasoning_chars": 583,
+      "content": "Answer: D",
+      "terse": true
+    }
+  },
+  "deepseek/deepseek-v3.2": {
+    "baseline_reasoning_chars": 1813,
+    "B2": {
+      "continued": false,
+      "reasoning_chars": 0,
+      "content_head": "Let's go step-by-step.  \n\n**Step 1: Time to reach highest point**  \nInitial velocity \\( u = 20 \\, \\text{m/s} \\) upward, \\( g = 10 \\, \\text{m/s}^2 \\) d"
+    },
+    "V1": {
+      "reasoning_chars": 2777,
+      "suppressed": false,
+      "content_head": "The ball is thrown upward with an initial velocity of 20 m/s. The time to reach the highest point is found using \\( t_{\\text{up}} = \\frac{u}{g} = \\fra"
+    },
+    "V2": {
+      "reasoning_chars": 2179,
+      "suppressed": false,
+      "content_head": "The ball is thrown upward with an initial velocity of 20 m/s. The acceleration due to gravity is 10 m/s\u00b2 downward. Using the kinematic equation for di"
+    },
+    "V3": {
+      "reasoning_chars": 0,
+      "content": "Answer: D",
+      "terse": true
+    }
+  },
+  "z-ai/glm-4.7": {
+    "baseline_reasoning_chars": 1295,
+    "B2": {
+      "continued": false,
+      "reasoning_chars": 2934,
+      "content_head": "To find the total time until the ball returns to the ground, we can use the kinematic equation for vertical displacement:\n\n$$y = y_0 + v_0 t + \\frac{1"
+    },
+    "V1": {
+      "reasoning_chars": 1950,
+      "suppressed": false,
+      "content_head": "To find the total time it takes for the ball to return to the ground, we can use the kinematic equation for vertical displacement:\n\n$$y = y_0 + v_0 t "
+    },
+    "V2": {
+      "reasoning_chars": 2270,
+      "suppressed": false,
+      "content_head": "To find the total time it takes for the ball to return to the ground, we can use the kinematic equation for vertical displacement:\n\n$$y = y_0 + v_0 t "
+    },
+    "V3": {
+      "reasoning_chars": 1755,
+      "content": "Answer: D",
+      "terse": true
+    }
+  },
+  "meta/muse-glimmer-30b": {
+    "baseline_reasoning_chars": 1409,
+    "B2": {
+      "continued": true,
+      "reasoning_chars": 878,
+      "content_head": "Upward motion: $v = v_0 - g t$\n\nAt the top $v = 0$\n\n$0 = 20 - 10 t_{up}$\n\n$t_{up}=20/10 = 2\\;{\\rm s}$\n\nTime down to ground is symmetric for constant $"
+    },
+    "V1": {
+      "reasoning_chars": 878,
+      "suppressed": false,
+      "content_head": "Upward motion:\n$v = v_0 - g t$\nAt top $v = 0$\n\n$0 = 20\\;{\\rm m/s} - 10\\;{\\rm m/s^2}\\;t_{up}$\n$t_{up}=20/10 = 2\\;{\\rm s}$\n\nTime to go up = time to come"
+    },
+    "V2": {
+      "reasoning_chars": 818,
+      "suppressed": false,
+      "content_head": "Upward motion: $v = v_0 - g t$\n\nAt top $v=0$\n\n$0 = 20\\;{\\rm m/s} - 10\\;{\\rm m/s^2}\\,t_{up}$\n\n$t_{up}=20/10 = 2\\;{\\rm s}$\n\nTime to go up = time to come"
+    },
+    "V3": {
+      "reasoning_chars": 2732,
+      "content": "Answer: D",
+      "terse": true
+    }
+  },
+  "qwen/qwen3-next-80b-a3b-thinking": {
+    "baseline_reasoning_chars": 1946,
+    "B2": {
+      "continued": false,
+      "reasoning_chars": 2161,
+      "content_head": "To determine how long it takes for the ball to return to the ground after being thrown straight up at 20 m/s, we analyze the motion in two parts: the "
+    },
+    "V1": {
+      "reasoning_chars": 3289,
+      "suppressed": false,
+      "content_head": "To determine how long it takes for the ball to return to the ground after being thrown straight up at 20 m/s, we analyze the motion under constant acc"
+    },
+    "V2": {
+      "reasoning_chars": 2597,
+      "suppressed": false,
+      "content_head": "To determine how long it takes for the ball to return to the ground after being thrown straight up at 20 m/s, we analyze the motion under constant acc"
+    },
+    "V3": {
+      "reasoning_chars": 1154,
+      "content": "Answer: D",
+      "terse": true
+    }
+  }
+}
