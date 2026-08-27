@@ -59,11 +59,19 @@ def extract_answer(text):
 
 
 def reasoning_of(text, cfg):
-    """Text the model emitted inside its own reasoning channel, if any."""
+    """Text the model emitted inside its own reasoning channel, if any.
+
+    If the closing delimiter never appears, the model reasoned without closing the
+    block -- so the WHOLE completion is reasoning. Returning "" there (the original
+    bug) scored a model that reasoned freely as having produced none, turning a
+    failure into a silent pass on exactly the check this test exists to make.
+    """
     if not cfg.thinking:
         return ""
     close = cfg.think_close.strip()
-    return text.split(close)[0] if close and close in text else ""
+    if not close:
+        return text
+    return text.split(close)[0] if close in text else text
 
 
 def main():
@@ -75,11 +83,13 @@ def main():
     # sequence, so vLLM's default of 1024 exceeds what fits. 256 is safe across
     # the list and is well above the concurrency these smoke tests need.
     ap.add_argument("--max-num-seqs", type=int, default=256)
+    # gpt-oss ships natively in MXFP4; forcing bf16 there fails or wastes memory.
+    ap.add_argument("--dtype", default="bfloat16")
     args = ap.parse_args()
 
     cfg = BY_REPO[args.model]
     tok = AutoTokenizer.from_pretrained(cfg.repo)
-    llm = LLM(model=cfg.repo, dtype="bfloat16", seed=12345,
+    llm = LLM(model=cfg.repo, dtype=args.dtype, seed=12345,
               max_model_len=args.max_model_len,
               gpu_memory_utilization=args.gpu_frac, max_num_seqs=args.max_num_seqs,
               trust_remote_code=True)
@@ -97,6 +107,7 @@ def main():
 
     base_reasoning = len(reasoning_of(gen["baseline"], cfg))
     res = {"model": cfg.repo, "lab": cfg.lab, "thinking": cfg.thinking,
+           "dtype": args.dtype,
            "baseline_reasoning_chars": base_reasoning,
            "baseline_head": gen["baseline"][:200]}
 
