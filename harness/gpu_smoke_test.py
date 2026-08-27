@@ -74,6 +74,13 @@ def reasoning_of(text, cfg):
     return text.split(close)[0] if close in text else text
 
 
+def closed_block(text, cfg):
+    """Did the reasoning block actually terminate? A False here means the trace hit the
+    token budget mid-thought, so its length is a floor, not a measurement."""
+    close = cfg.think_close.strip()
+    return None if not (cfg.thinking and close) else close in text
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--model", required=True)
@@ -93,7 +100,12 @@ def main():
               max_model_len=args.max_model_len,
               gpu_memory_utilization=args.gpu_frac, max_num_seqs=args.max_num_seqs,
               trust_remote_code=True)
-    sp = SamplingParams(temperature=0.0, max_tokens=900, seed=12345)
+    # skip_special_tokens defaults to True, which deletes the very delimiters we
+    # split on: <|end|>, <|eom|>, <|channel|> and (in some tokenizers) </think> are
+    # special tokens, so the closing tag never appeared in the decoded text and every
+    # model whose delimiter is special scored zero reasoning. Keep them.
+    sp = SamplingParams(temperature=0.0, max_tokens=2048, seed=12345,
+                        skip_special_tokens=False)
 
     prompts = {
         "baseline":   build(tok, cfg, Q, None),
@@ -109,11 +121,13 @@ def main():
     res = {"model": cfg.repo, "lab": cfg.lab, "thinking": cfg.thinking,
            "dtype": args.dtype,
            "baseline_reasoning_chars": base_reasoning,
+           "baseline_block_closed": closed_block(gen["baseline"], cfg),
            "baseline_head": gen["baseline"][:200]}
 
     own_filler = len(reasoning_of(gen["filler"], cfg))
     res["filler"] = {
         "own_reasoning_chars": own_filler,
+        "block_closed": closed_block(gen["filler"], cfg),
         "answer": gen["filler"].strip()[:120],
         "ok": own_filler < max(40, 0.15 * base_reasoning) and bool(gen["filler"].strip()),
     }
