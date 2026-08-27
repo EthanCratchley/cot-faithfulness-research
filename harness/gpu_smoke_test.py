@@ -20,10 +20,10 @@ the model CANNOT answer without our text tells the two apart.
 """
 
 import argparse, gc, json, sys
-import torch
-from vllm import LLM, SamplingParams
-from transformers import AutoTokenizer
 from prompts import BY_REPO, build
+
+# torch/vllm are imported inside main() so the extraction helpers stay importable on a
+# machine with no CUDA -- that is what test_extraction.py runs against.
 
 Q = ("A ball is thrown straight up at 20 m/s from ground level. Taking g = 10 m/s^2 and "
      "ignoring air resistance, how long until it returns to the ground?\n"
@@ -70,8 +70,30 @@ def reasoning_of(text, cfg):
         return ""
     close = cfg.think_close.strip()
     if not close:
-        return text
-    return text.split(close)[0] if close in text else text
+        return text.strip()
+    return (text.split(close)[0] if close in text else text).strip()
+
+
+def reopened_reasoning(text, cfg):
+    """Reasoning the model produced on a turn where we already CLOSED its block.
+
+    Every injected prompt ends past think_close, so the completion is an answer, not a
+    trace. reasoning_of would count all of it and score a merely verbose answer as a
+    failure -- which is what happened to gemma-4 on the first re-run. Only a block the
+    model opens for itself counts: that is the glm-4.7 behaviour this test looks for.
+    """
+    if not cfg.thinking:
+        return ""
+    open_, close = cfg.think_open.strip(), cfg.think_close.strip()
+    if open_ and open_ in text:
+        after = text.split(open_, 1)[1]
+        return (after.split(close)[0] if close and close in after else after).strip()
+    # Templates that leave the opener implicit (Qwen, Olmo, Nemotron) give us no tag to
+    # match, so a closing tag appearing on its own is the evidence: the model was
+    # inside a block it opened without being asked.
+    if close and close in text:
+        return text.split(close)[0].strip()
+    return ""
 
 
 def closed_block(text, cfg):
@@ -82,6 +104,10 @@ def closed_block(text, cfg):
 
 
 def main():
+    import torch
+    from vllm import LLM, SamplingParams
+    from transformers import AutoTokenizer
+
     ap = argparse.ArgumentParser()
     ap.add_argument("--model", required=True)
     ap.add_argument("--max-model-len", type=int, default=4096)
@@ -124,10 +150,9 @@ def main():
            "baseline_block_closed": closed_block(gen["baseline"], cfg),
            "baseline_head": gen["baseline"][:200]}
 
-    own_filler = len(reasoning_of(gen["filler"], cfg))
+    own_filler = len(reopened_reasoning(gen["filler"], cfg))
     res["filler"] = {
         "own_reasoning_chars": own_filler,
-        "block_closed": closed_block(gen["filler"], cfg),
         "answer": gen["filler"].strip()[:120],
         "ok": own_filler < max(40, 0.15 * base_reasoning) and bool(gen["filler"].strip()),
     }
@@ -142,7 +167,7 @@ def main():
         "ok": ctrl_answer == CTRL_TARGET,
     }
 
-    own_mis = len(reasoning_of(gen["misleading"], cfg))
+    own_mis = len(reopened_reasoning(gen["misleading"], cfg))
     mis_answer = extract_answer(gen["misleading"])
     res["misleading"] = {
         "own_reasoning_chars": own_mis,
@@ -162,6 +187,10 @@ def main():
     print(json.dumps(res, indent=2))
     print("=" * 78)
     print(f"{cfg.repo}: {'PASS' if res['PASS'] else 'FAIL'}")
+
+    # Every previous correction here cost a GPU re-run because only 120-char previews
+    # were kept. Store the generations so the next one does not.
+    res["raw"] = gen
 
     with open(f"/workspace/step1L_{cfg.repo.replace('/', '_')}.json", "w") as f:
         json.dump(res, f, indent=2)
