@@ -26,6 +26,17 @@ run() {
   sed -n '/^{/,/^}/p' "/workspace/smoke_${slug}.log" | head -50
   [ $rc -ne 0 ] && grep -E "Error|error:|ValueError|RuntimeError|Exception" \
       "/workspace/smoke_${slug}.log" | grep -v Traceback | head -4
+  # vLLM's EngineCore is a child process and survives the parent, still holding the
+  # whole GPU. One orphan silently fails every model that follows it, so reap it and
+  # wait for the memory to actually come back before moving on.
+  pkill -9 -f "VLLM::EngineCore" 2>/dev/null
+  for _ in $(seq 1 15); do
+    used=$(nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits)
+    [ "$used" -lt 2000 ] && break
+    sleep 2
+  done
+  echo "gpu free: ${used}MiB used"
+
   local cache="/root/.cache/huggingface/hub/models--${repo//\//--}"
   rm -rf "$cache" 2>/dev/null
   echo "freed $cache"
