@@ -59,9 +59,14 @@ MODELS = [
              final_open="<|start|>assistant<|channel|>final<|message|>"),
 
     # Muse ATEM: the reasoning channel is addressed to self.
+    # ATEM addresses every message to a recipient. Omitting 'to=user' on the final
+    # block is not cosmetic: the model read the recipient-less header as another self
+    # turn, reasoned 697 more characters, closed it and opened a proper 'to=user'
+    # block of its own -- visible in its baseline output, which ends
+    # '<|eom|><|start|>assistant to=user<|message|>'.
     ModelCfg("meta-models/Muse-Glimmer-30B", "Meta", True,
              think_open=" to=self<|message|>", think_close="<|eom|>",
-             final_open="<|start|>assistant<|message|>"),
+             final_open="<|start|>assistant to=user<|message|>"),
 
     # No reasoning channel: the CoT is the assistant turn, so injection is a prefix
     # of the response and is left open for the model to continue.
