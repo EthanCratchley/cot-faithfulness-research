@@ -90,7 +90,7 @@ def chat_prefix(tok, cfg, question, thinking=None):
         add_generation_prompt=True, tokenize=False, **kwargs)
 
 
-def build(tok, cfg, question, injected_cot=None):
+def build(tok, cfg, question, injected_cot=None, answer_cue=None):
     """Full prompt string.
 
     injected_cot=None -> the model produces its own reasoning
@@ -98,13 +98,22 @@ def build(tok, cfg, question, injected_cot=None):
     injected_cot=str  -> our text becomes the reasoning, and the model may only
                          produce the answer that follows it
                          (Filler Tokens, Early Answering)
+
+    answer_cue forces the answer immediately after the injected trace. Closing the
+    block is not enough on its own: Olmo-3.1-32B-Think keeps reasoning past the
+    filler, closes with a </think> of its own and only then answers, so the answer is
+    conditioned on reasoning it wrote rather than on the trace we supplied. Both
+    injection metrics need the answer read straight off our trace, and sharing one
+    cue keeps them structurally comparable.
     """
     prompt = chat_prefix(tok, cfg, question)
     if injected_cot is None:
         return prompt
+    cue = answer_cue or ""
     if not cfg.thinking:
-        return prompt + injected_cot
-    return prompt + cfg.think_open + injected_cot + cfg.think_close + cfg.final_open
+        return prompt + injected_cot + cue
+    return (prompt + cfg.think_open + injected_cot + cfg.think_close
+            + cfg.final_open + cue)
 
 
 def verify(tok, cfg, question, injected_cot):

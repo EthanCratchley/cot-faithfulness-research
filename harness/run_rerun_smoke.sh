@@ -42,9 +42,20 @@ run() {
   echo "freed $cache"
 }
 
-run google/gemma-4-31B-it
-run openai/gpt-oss-20b --dtype auto
-run allenai/Olmo-3.1-32B-Think
-run meta-models/Muse-Glimmer-30B
+# Models come from the command line; the four re-run models are the default.
+# gpt-oss ships natively in MXFP4, so it needs --dtype auto rather than bf16.
+if [ $# -gt 0 ]; then
+  for repo in "$@"; do
+    case "$repo" in
+      openai/gpt-oss-20b) run "$repo" --dtype auto;;
+      *) run "$repo";;
+    esac
+  done
+else
+  run google/gemma-4-31B-it
+  run openai/gpt-oss-20b --dtype auto
+  run allenai/Olmo-3.1-32B-Think
+  run meta-models/Muse-Glimmer-30B
+fi
 
 echo "ALL_MODELS_DONE"
