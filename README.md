@@ -18,10 +18,11 @@ Full design, hypothesis, analysis plan and limitations: **[`spec/design.md`](spe
 | ---- | ----- |
 | Step 0 — weight availability | ✅ passed |
 | Step 1 — API capability probe | ✅ passed — *drove the switch to local execution* |
-| Step 1L — local prefill smoke test | next |
+| Step 1L (offline) — CoT injection verified on all 8 tokenizers | ✅ passed |
+| Step 1L (GPU) — confirm models continue rather than re-reason | next, needs a pod |
 | Steps 2–9 | not started |
 
-The harness is not built yet. Everything in `probes/` is Step 1 evidence.
+`probes/` is Step 1 evidence. `harness/` is the beginning of the real pipeline.
 
 ## Metrics
 
@@ -73,9 +74,30 @@ model run with thinking enabled vs. suppressed (varies inference).
 
 ```
 spec/design.md   the pre-registered design — read this first
+harness/         prompt construction and injection verification
 probes/          Step 1 capability probes, in execution order
 results/         their raw JSON output
 ```
+
+### Injection verification
+
+Each model family puts reasoning in a different place — `<think>` for Qwen/Olmo/Nemotron,
+`<|channel|>analysis<|message|>` for gpt-oss, `<|start|>assistant to=self<|message|>` for
+Muse-Glimmer, asymmetric `<|channel>thought`/`<channel|>` for Gemma-4. `harness/prompts.py`
+reads those delimiters off each model's own chat template rather than guessing them.
+
+`harness/verify_templates.py` then proves an injected trace lands **between** the reasoning
+delimiters, not merely somewhere in the prompt. It needs tokenizers only, so it runs in
+seconds on a laptop:
+
+```bash
+pip install transformers jinja2
+python harness/verify_templates.py     # 8/8 models pass
+```
+
+Checking only that injected text is *present* is the weaker test the API path forced on us,
+and it is why a dropped injection was indistinguishable from a successful one for five rounds
+of probing.
 
 Probes run in order: single-model prefill → injection-path variants → reasoning-disable rescue →
 provider sweep → catalog screen → shortlist verification.
