@@ -25,8 +25,11 @@ def main():
     ap.add_argument("--model", required=True)
     ap.add_argument("--items", default="/workspace/data/items_pilot_200.json")
     ap.add_argument("--out", default="/workspace")
-    ap.add_argument("--max-model-len", type=int, default=8192)
-    ap.add_argument("--max-tokens", type=int, default=3072)
+    # 3072 truncated 26.5% of Qwen's traces on MMLU-Pro and censored the distribution
+    # above p75, and every unparsed row was a truncated one -- a trace cut off mid
+    # sentence never reaches "Answer: X". Gate C is upstream of Gate B.
+    ap.add_argument("--max-model-len", type=int, default=10240)
+    ap.add_argument("--max-tokens", type=int, default=8192)
     ap.add_argument("--gpu-frac", type=float, default=0.90)
     ap.add_argument("--max-num-seqs", type=int, default=256)
     ap.add_argument("--dtype", default="bfloat16")
