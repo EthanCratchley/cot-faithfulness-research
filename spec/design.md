@@ -225,6 +225,13 @@ _Answers: does it matter which metric a researcher picked?_
 
 **Primary companion — pairwise rank-swap frequency.** For each model pair (A, B) and each metric pair (M1, M2), report the fraction of bootstrap replicates in which A outranks B. A statement of the form _"under Biasing Features, model X beats Y in 91% of resamples; under Filler Tokens, in 12%"_ is more robust to n=8 than a single tau and is the form a reviewer can actually check.
 
+**Robustness — every metric computed twice, on all items and on the non-truncated subset.** Reasoning
+models write heavy-tailed traces on hard items, so a fixed token budget always censors some (Step 2:
+7–26.5% per model, and no achievable budget avoids it). Truncation is a difficulty signal, so dropping
+those items is not neutral — it raised pilot accuracy by 9–19 points per model. The requirement is
+therefore that the *ranking* survive: **Kendall's tau ≥ 0.85 between the two rankings, with no swap
+among non-adjacent models.** See §10 Amendment 1. Pilot value on accuracy: tau = +1.000.
+
 **Secondary — Cohen's kappa on trace-level agreement between metric pairs.** For each trace, each metric returns faithful/unfaithful (binarization fixed in §5). Kappa measures agreement corrected for chance. Computed on the common support defined in §5. **Pooled across models as primary; per-model as supporting.**
 
 _Answers: do the metrics disagree about individual cases, or agree on cases while rankings flip because models are bunched together?_
@@ -358,29 +365,91 @@ early results kept 120-character previews. `test_extraction.py` pins the extract
 in a second. Two models needed the §5 answer cue before Filler Tokens was computable at all; with it,
 8/8 pass.
 
-**Step 2 — Baseline accuracy pilot.** *(~2 GPU-hr, ~$7)*
+**Step 2 — Baseline accuracy pilot.** ✅ **RUN — Gate A failed as written; see the amendments below.**
+*(81 GPU-min, ~$5)*
 Each model, the **same 200 MMLU-Pro items** (stratified by subject, seed logged), no hints, no
 interventions, **uncued** — this measures each model's own behaviour, so the §5 answer cue is
 deliberately absent. Same extractor as every other condition.
 
-Per item, recorded: prompt, full raw generation, extracted answer, gold answer, reasoning-block
-character and token counts, whether the block closed, and generation time. Per model: weights revision
-hash, dtype, vLLM version, seed, and sustained tokens/sec at the batch config used.
+| Model | Accuracy | Band | Parse fail | Truncated | Median CoT | tok/s |
+| ----- | -------- | ---- | ---------- | --------- | ---------- | ----- |
+| Qwen3.8-27B | 86.0% | **out** | 2.0% | 16.0% | 2,049 | 1,147 |
+| Muse-Glimmer-30B | 85.5% | **out** | 1.5% | 7.0% | 3,648 | 1,421 |
+| gemma-4-31B-it | 85.5% | **out** | 1.0% | 11.0% | 5,284 | 459 |
+| Nemotron-3-Nano-30B | 75.0% | in | 7.5% | 24.0% | 5,726 | 2,171 |
+| Olmo-3.1-32B-Think | 73.5% | in | 3.0% | 26.5% | 14,942 | 549 |
+| gpt-oss-20b | 72.0% | in | 4.5% | 9.5% | 1,836 | 3,065 |
+| Olmo-3.1-32B-Instruct | 71.5% | in | 2.0% | 9.5% | — | 539 |
+| Mistral-Small-3.2-24B | 68.0% | in | 1.0% | 0.0% | — | 1,131 |
 
-→ **Gate A (accuracy band):** the median model lands in **50–80%** and no more than two fall outside.
-Too easy and every metric compresses against a ceiling; too hard and hinted flips are noise. If it
-fails, switch to 4-option MMLU and re-run — the fallback is pre-committed, not chosen after seeing which
-result is prettier.
-→ **Gate B (extraction):** answer-parse failure rate **< 2%** on every model. Anything higher gets
-hand-inspected before proceeding; a silent parse failure is the exact failure mode Step 1L kept hitting.
-→ **Gate C (truncation):** fewer than 5% of traces hit the token budget unclosed. Raise the budget and
-re-run if not — a truncated trace is a floor, not a measurement.
+Median **74.2%**, range 68.0–86.0%. The list is **bimodal**: four models at 68–75%, three at 85–86%.
 
-Also decides three things currently open:
+**Gate B was never an independent failure.** 43 of the 45 unparsed rows across all eight models are
+truncated rows — a trace cut off mid-sentence never reaches "Answer: X". The two exceptions are both
+Mistral and both legitimate: one answered in LaTeX (`\boxed{F}`, now supported by the extractor) and one
+refused, stating that no option matched. Gate B is downstream of Gate C and is retained unchanged.
 
-- **The matched-pair model** — longest and most stable CoT, run thinking-on vs thinking-suppressed.
-- **GPU sizing** — measured throughput on the four 60–64GB models settles the §12 VRAM caveat.
-- **Whether a network volume pays for itself**, from the observed re-download cost per pod.
+**The matched pair is settled: Olmo-3.1-32B-Think (73.5%) vs Olmo-3.1-32B-Instruct (71.5%).** A
+2-point gap on identical items means a faithfulness difference between them cannot be dismissed as one
+model simply being more capable. Think also has the longest CoT on the list by a factor of three
+(14,942 chars median), which is what Early Answering needs to truncate meaningfully.
+
+**GPU sizing is settled:** one H100 NVL 94GB ran every model without tensor parallelism. A network
+volume is **not** worth it at this pod count — weight re-download is minutes per model against $0.05/hr
+of standing storage.
+
+#### Amendment 1 — Gate C replaced by a ranking-stability check
+
+*Made after seeing Step 2 results. Recorded rather than quietly edited.*
+
+Gate C required under 5% of traces to hit the token budget. **It fails on 7 of 8 models and no
+achievable configuration satisfies it.** Raising the budget from 3,072 to 8,192 moved Qwen only 26.5% →
+16.0%; the decay is slow enough that under 5% would need on the order of 80k tokens per trace. The
+threshold was set before knowing these models write 15,000-character traces on hard items.
+
+Worse, the obvious remedy is actively harmful. Restricting to the 123/200 items **no** model truncates
+raises median accuracy from 74.2% to **91.9%** and puts **all eight** models outside the band.
+Truncation is a *difficulty signal*, not noise: long traces are what hard items produce, so excluding
+them selects for easy items and destroys the benchmark's power to discriminate.
+
+**Replacement.** Every metric is computed twice — on all items, and on the subset where no model
+truncated — and the **induced model ranking must agree between the two**. Reported as Kendall's tau
+between the two rankings, with the per-pair swaps listed.
+
+Why ranking rather than completeness: every claim this paper makes has the form *"metric M1 ranks A
+above B, metric M2 reverses them."* Nothing in that depends on whether accuracy was 74% or 92%, so
+ordering is the property that must be robust. The old gate could fail while the study was perfectly
+sound; this one fails only when truncation actually distorts a conclusion.
+
+**Pilot evidence:** on accuracy, tau between the all-items and completed-only rankings is **+1.000**
+(24 concordant, 0 discordant). Scores moved 9–19 points; the order did not, bar a Qwen/Muse swap
+separated by 0.5pp. **Threshold: tau ≥ 0.85 with no swap among non-adjacent models.**
+
+#### Amendment 2 — Gate A's band spread accepted; its fallback was backwards
+
+*Made after seeing Step 2 results.*
+
+Gate A required the median in 50–80% **and** at most two models outside. The median passes at 74.2%;
+the second clause fails with three models at 85–86%.
+
+**The pre-committed fallback does not apply.** It specified 4-option MMLU on the assumption the band
+would fail by being too *hard*. It failed by being too *easy*, and 4-option MMLU raises accuracy
+further — the fallback would worsen the exact problem it was written for. It is void, and saying so
+explicitly matters more than pretending it still governs.
+
+**Resolution: accept the spread and document it.** The median is in band, the bimodality is real
+capability variation rather than a ceiling artifact (the top three are at 85–86%, not 95%+), and
+capability spread is arguably *favourable* for a study about whether metrics agree on rankings — it
+supplies both a well-separated pair and a tightly-bunched cluster to test agreement within.
+
+**What was rejected, and why:** resampling toward hard categories re-draws items after seeing results
+and raises truncation further; dropping the three high models costs three labs and reinstates exactly
+the capability-based selection bias §6 abandoned when the design went local; widening the band to
+50–90% is a post-hoc threshold move with no independent justification.
+
+**Recorded as a limitation:** three of eight models sit above the pre-registered band, so between-model
+differences among those three are measured against less headroom than for the other five. Any
+metric-agreement finding that rests solely on the ordering of those three is reported as weaker.
 
 **Step 3 — Write the pre-registration.** *(~1 hour)*
 Predicted answer, primary statistic (tau with bootstrap CI), falsification condition, confound list.
@@ -427,13 +496,15 @@ analysis notebook.
 | Muse-Glimmer ATEM template  | `final_open` needed the `to=user` recipient; fixed and verified                                   |
 | Mistral V7 hand-transcribed template | Validated behaviourally — it passes the delivery control, so injected context reaches the model |
 
-**Still open:**
+| MMLU-Pro accuracy band      | **Median 74.2% holds; three models above 80%.** Spread accepted, Amendment 2          |
+| Gate C truncation ceiling   | **Unattainable; replaced by a ranking-stability check**, Amendment 1                  |
+| Matched-pair model          | **Olmo-3.1-32B-Think vs -Instruct**, 73.5% vs 71.5% on identical items                |
+| GPU sizing                  | **One H100 NVL 94GB suffices** for all eight, no tensor parallelism                   |
+| Network volume              | **Not worth it** at this pod count; re-download costs minutes, storage costs standing rent |
 
-- Whether MMLU-Pro holds the accuracy band on this list (Step 2); fallback is 4-option MMLU
+**Still open:**
 - Whether the source paper's judge prompt can be obtained (blocks a clean Step 5)
 - Whether CMA is worth the implementation effort once the three core metrics are running
-- Whether the four 60–64 GB models get workable throughput on one H100 NVL 94GB (measured in Step 2)
-- Whether a network volume pays for itself against per-pod weight re-download (measured in Step 2)
 - Whether NVIDIA's licence for Nemotron permits the intended release
 
 ## 12. Budget
@@ -449,7 +520,7 @@ $3.19/hr, which leaves ~30 GB and loaded every model on the list without tensor 
 rate is higher than an A100's, so whether it is cheaper *per completed run* depends on throughput, which
 Step 2 measures rather than guesses.
 
-**Spent so far: ~$15** — $2 on the Step 1 API probes, ~$13 on Step 1L across four pods. The Step 1L
+**Spent so far: ~$20** — $2 on the Step 1 API probes, ~$13 on Step 1L across four pods. The Step 1L
 overrun was re-runs caused by measurement bugs, not by generation: fixing each cost a fresh pod because
 early results stored previews instead of raw output. Results now store raw generations, which is why the
 Muse-Glimmer template bug was diagnosed offline for free.
@@ -465,6 +536,7 @@ Muse-Glimmer template bug was diagnosed offline for free.
 | Judge calls (Haiku 4.5 bulk + Opus 5 subsample)   | $10           |
 | Step 1 API probes (already spent)                 | $2            |
 | Step 1L, local smoke test (already spent)         | $13           |
+| Step 2, baseline pilot, 81 GPU-min (already spent)| $5            |
 | **Expected total**                                | **~$60–75**   |
 | **Hard ceiling**                                  | **$120**      |
 
