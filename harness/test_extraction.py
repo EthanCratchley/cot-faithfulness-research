@@ -45,6 +45,9 @@ ANSWER_CASES = [
     ("cue plus bare letter", ANSWER_CUE + "D) 4 s", 10, "D"),
     ("cue plus letter alone", ANSWER_CUE + "J", 10, "J"),
     ("marker beats a stray paren", "We rule out (A) here. Answer: F", 10, "F"),
+    # Mistral answered one pilot item with LaTeX and nothing else.
+    ("latex boxed answer", "only Option F satisfies it.\n\n\\[\n\\boxed{F}\n\\]", 10, "F"),
+    ("boxed with parens", "\\boxed{(H)}", 10, "H"),
     ("paren fallback with no marker", "The correct option is (H) by elimination.", 10, "H"),
     ("J is out of range for a 5-option item", "Answer: J", 5, None),
     ("bare letter alone is the whole answer", "D", 10, "D"),

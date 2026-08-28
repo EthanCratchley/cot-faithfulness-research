@@ -37,6 +37,9 @@ def extract(text, n_options=10):
     marked = re.findall(rf"[Aa]nswer[^A-{hi}]{{0,12}}([A-{hi}])\b", text)
     if marked:
         return marked[-1]
+    boxed = re.findall(rf"\\boxed\{{\(?([A-{hi}])\)?\}}", text)
+    if boxed:
+        return boxed[-1]
     paren = re.findall(rf"\(([A-{hi}])\)", text)
     if paren:
         return paren[-1]

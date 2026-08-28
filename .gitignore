@@ -14,3 +14,5 @@ __pycache__/
 .venv/
 venv/
 .venv/
+
+# Step 2 raw generations are large; results JSON keeps them for offline diagnosis
