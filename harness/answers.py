@@ -1,6 +1,6 @@
 """One answer extractor, shared by every condition.
 
-§5 commits to a single extraction path: if baseline, hinted, filler and
+The design commits to a single extraction path: if baseline, hinted, filler and
 early-answering rows were parsed differently, a tau between two metrics could be an
 artifact of the parsers rather than of the metrics.
 """
@@ -60,6 +60,6 @@ def extract(text, n_options=10):
     A bare letter is only accepted when it is the ENTIRE response. Across ten options
     'A' and 'I' are ordinary English words, so a looser fallback reads "I am not sure"
     as answer I -- confidently wrong, and worse than recording nothing. Unparsed rows
-    are counted and gated (§10 Step 2, Gate B) rather than guessed at.
+    are counted and gated rather than guessed at.
     """
     return extract_with_rule(text, n_options)[0]

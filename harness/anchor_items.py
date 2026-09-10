@@ -1,4 +1,4 @@
-"""Frozen ARC-Easy item set for the Step 5 anchor.
+"""Frozen ARC-Easy item set for the published-number anchor.
 
 ARC-Easy, not MMLU-Pro: the anchor reproduces arXiv:2512.23032 Table 1, whose per-model
 professor-hint numbers are reported on ARC-Easy. Reproducing their number on a different

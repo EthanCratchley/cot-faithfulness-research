@@ -69,7 +69,7 @@ check("seeded draw is reproducible", s1 == validation_sample(by_model, n=200), T
 check("draws across models, not within one", len({m for m, _ in s1}), 4)
 check("caps at the available count", len(validation_sample(by_model, n=10_000)), 400)
 
-print("\n== Step 5 anchor gate ==")
+print("\n== anchor gate ==")
 from judge import PUBLISHED_ANCHOR, anchor_gate
 L3B, L8B, G4B = sorted(PUBLISHED_ANCHOR, key=lambda m: PUBLISHED_ANCHOR[m])
 check("published order is 3B < 8B < gemma",

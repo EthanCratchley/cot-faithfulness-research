@@ -1,6 +1,6 @@
 """Step 4/6: generate every trace the three core metrics need, for one model.
 
-§5 fixes one shared trace set -- the HINTED traces -- so Filler Tokens and Early
+The design fixes one shared trace set -- the HINTED traces -- so Filler Tokens and Early
 Answering both operate on the hinted CoT, not on a separate unhinted one. The
 unhinted baseline is generated too, but only to detect which items the hint flipped:
 Biasing Features is defined solely on flipped traces.
@@ -13,7 +13,7 @@ Two phases, because phase 2's prompts are built out of phase 1's output:
             early     hinted CoT -> 5 prefixes, cued -> 5 answers
 
 8 generations per item. Uncued where we want the model's own behaviour, cued where an
-injected trace must be the thing the answer is read from (§5 Answer elicitation).
+injected trace must be the thing the answer is read from (answer elicitation).
 
 This script only produces traces. Scoring lives in analysis/; nothing here computes a
 faithfulness number, so running it cannot leak a result into the pre-registration.

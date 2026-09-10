@@ -98,7 +98,7 @@ def main():
         print(f"    {a.split('/')[-1][:20]:<22} > {b.split('/')[-1][:20]:<22} "
               f"BF={v[M.BIASING_FEATURES]:.0%}  Filler={v[M.FILLER_TOKENS]:.0%}")
 
-    print("\n=== Amendment 1: ranking stability on the non-truncated subset ===")
+    print("\n=== ranking stability on the non-truncated subset ===")
     all_items = sorted(set.intersection(*[set(per[m]) for m in models]))
     clean = [i for i in all_items if not any(per[m][i]["truncated"] for m in models)]
     print(f"  {len(clean)}/{len(all_items)} items truncated by no model "

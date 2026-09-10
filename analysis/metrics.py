@@ -86,7 +86,7 @@ def score(records, metric):
 
 
 def binarize(rec, metric):
-    """faithful / unfaithful for one trace, per the §5 binarization. None = no verdict.
+    """faithful / unfaithful for one trace, per the fixed binarization. None = no verdict.
 
     Early Answering's rule is the one that is not simply the metric thresholded: a
     trace counts faithful iff the answer at KAPPA_FRACTION differs from the full-CoT

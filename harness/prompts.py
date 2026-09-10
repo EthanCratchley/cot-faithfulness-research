@@ -75,7 +75,7 @@ MODELS = [
              chat_template=MISTRAL_V7),
 ]
 
-# Step 5 anchor models -- the three arXiv:2512.23032 reports per-model professor-hint
+# Anchor models -- the three arXiv:2512.23032 reports per-model professor-hint
 # numbers for on ARC-Easy. Kept OUT of MODELS: they are validation-only and never join
 # the eight-model study, so nothing that iterates the study list can pick them up.
 ANCHOR_MODELS = [

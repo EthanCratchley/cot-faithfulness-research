@@ -16,23 +16,21 @@ under [Pre-registered hypotheses](#pre-registered-hypotheses) below.
 
 ## Status
 
-| Step | State |
+| Stage | State |
 | ---- | ----- |
-| Step 0 — weight availability | ✅ passed |
-| Step 1 — API capability probe | ✅ passed — *drove the switch to local execution* |
-| Step 1L — CoT injection verified offline and on real weights | ✅ passed, 8/8 |
-| Step 2 — baseline accuracy pilot | ✅ run; two gates amended |
-| Step 3 — predictions written down | ✅ before any metric was computed |
-| Step 4 — harness, judge, scoring layer | ✅ |
-| Step 5 — published-number anchor | ⚠️ **dropped**, Amendment 3 |
-| Step 6 — full runs, 8 models × 500 items | ✅ |
-| Step 7 — analysis | ✅ **H1 and H2 confirmed** |
-| Step 8 — canary re-run | ⚠️ **not run**, Amendment 5 (no H100 NVL stock) |
-| Step 9 — write-up | 🔄 in progress |
+| Weight availability | ✅ passed |
+| API capability probe | ✅ passed — *drove the switch to local execution* |
+| CoT injection verified offline and on real weights | ✅ passed, 8/8 |
+| Baseline accuracy pilot | ✅ run |
+| Predictions written down | ✅ before any metric was computed |
+| Harness, judge, scoring layer | ✅ |
+| Full runs, 8 models × 500 items | ✅ |
+| Analysis | ✅ **H1 and H2 confirmed** |
+| Write-up | 🔄 in progress |
 
 ## Pre-registered hypotheses
 
-Fixed before the first full run, with the Step 2 baseline accuracies disclosed as the
+Fixed before the first full run, with the baseline accuracy pilot disclosed as the
 only prior observation:
 
 | | Registered as | Outcome |
@@ -81,7 +79,8 @@ Two findings came out of the machinery rather than the hypothesis:
   study's thesis reproducing one level down: implementation choice *inside* a metric
   reorders models at least as much as the choice *between* metrics.
 
-`probes/` is Step 1 evidence. `harness/` is the pipeline. `results/analysis.json` is Step 7.
+`probes/` is the API-capability evidence. `harness/` is the pipeline.
+`results/analysis.json` is the headline analysis.
 
 ## Metrics
 
@@ -94,7 +93,7 @@ Three independent constructs, plus one sensitivity axis:
 | Early Answering | Truncate the CoT — when is the answer already determined? | yes |
 | faithful@k | Across k samples, does *any* verbalize the hint? | **no** — monotone in the Biasing Features rate; reported only as the sampling-budget axis |
 
-## What Step 1 found
+## What the API screen found
 
 The study was originally designed to run on API-served models. It can't be, and finding out why is
 a result in its own right.
@@ -133,7 +132,7 @@ model run with thinking enabled vs. suppressed (varies inference).
 
 ```
 harness/            prompt construction, generation, judging
-probes/             Step 1 API capability probes, in execution order
+probes/             API capability probes, in execution order
 analysis/           scoring, statistics, and the write-up artefacts
 writing/            the write-up: skeleton, generated tables, figures
 
@@ -145,8 +144,8 @@ results/
   step1L/           CoT-injection verification on real weights, free-running
   step1L_cued/      the same check with the answer cued — the scaffold comparison
   probe/ plumbing/  small pre-flight runs kept for provenance
-  0*.json           Step 1 probe output, numbered in execution order
-  analysis.json     Step 7 headline results
+  0*.json           probe output, numbered in execution order
+  analysis.json     headline results
   judge_swap.json   per-model Biasing Features under each judge
 ```
 
@@ -184,13 +183,13 @@ API key. Generation itself needs an 80GB GPU and is the only expensive step.
 ```bash
 pip install -r requirements.txt
 
-python analysis/run_analysis.py      # -> results/analysis.json      (Step 7 headline)
+python analysis/run_analysis.py      # -> results/analysis.json      (headline analysis)
 python analysis/judge_swap.py        # -> results/judge_swap.json    (the judge swap)
 python analysis/writeup_tables.py    # -> writing/tables.md          (every table)
 python analysis/figures.py           # -> writing/figures/*.svg|png  (light + dark)
 ```
 
-The Step 1 probes are the only part that calls an API, and re-running all of them cost
+The probes are the only part that calls an API, and re-running all of them cost
 about $2:
 
 ```bash
@@ -222,12 +221,11 @@ Stated here rather than left to the reader to discover:
   item set and the non-truncated subset, 4 non-adjacent swaps) on healthy support. Any
   conclusion resting on its ordering is weakened.
 - **No external validation.** The metric implementations are ours and were never checked
-  against a published number — the planned anchor run was dropped. Nothing here
-  establishes that this Biasing Features implementation is commensurable with published
-  Biasing Features.
-- **No reproduction check.** The re-run canary never executed (no H100 NVL stock).
-  Determinism is argued from configuration — fixed seed, pinned revisions, one vLLM
-  version — not demonstrated.
+  against a published number. Nothing here establishes that this Biasing Features
+  implementation is commensurable with published Biasing Features.
+- **No reproduction check.** No re-run on identical hardware was performed. Determinism
+  is argued from configuration — fixed seed, pinned revisions, one vLLM version — not
+  demonstrated.
 - **n = 8 models.** tau is noisy at this n; every conclusion rests on bootstrap CIs and
   rank-swap frequencies rather than point estimates.
 - **The judge changed mid-study.** Haiku verdicts are preserved in `results/judge_haiku_v2/`

@@ -21,5 +21,5 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 The MIT grant covers the code in this repository. Model weights, datasets and
-per-model licences are the property of their respective owners; see
-spec/design.md for per-model licence notes.
+per-model licences are the property of their respective owners; see the README
+for per-model licence notes.

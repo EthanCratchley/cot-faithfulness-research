@@ -170,7 +170,7 @@ def main():
                  ["---", "---", "---:"]), "",
            f"Thinking **{h3['thinking_mean']:+.3f}** (n={h3['n_thinking']}), instruct "
            f"**{h3['instruct_mean']:+.3f}** (n={h3['n_instruct']}). Separation is complete. "
-           "The statistic was chosen after seeing the data (Amendment 4).", ""]
+           "The statistic was chosen after seeing the data, not before.", ""]
 
     md += ["---", "", "## §4.4 — The judge swap", "",
            table(["Model", "Haiku 4.5", "Opus 5", "Delta"],

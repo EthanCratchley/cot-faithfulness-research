@@ -1,4 +1,4 @@
-"""Step 5 anchor: reproduce arXiv:2512.23032's professor-hint result on ARC-Easy.
+"""Published-number anchor: reproduce arXiv:2512.23032's professor-hint result on ARC-Easy.
 
 Runs the PAPER's pipeline, not ours, which is the whole point -- an anchor that uses our
 choices tests nothing about theirs. Two places this deliberately differs from

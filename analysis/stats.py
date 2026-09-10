@@ -108,7 +108,7 @@ def rank_swap_frequency(per_item, score_fn, metric_a, metric_b, n_boot=2000, see
 
 
 def ranking_stability(scores_all, scores_subset, adjacent_pp=1.0):
-    """§10 Amendment 1: does dropping truncated items reorder the models?
+    """Does dropping truncated items reorder the models?
 
     Gate is tau >= 0.85 AND no swap between models separated by more than
     adjacent_pp on the full data. The second clause matters because tau alone cannot

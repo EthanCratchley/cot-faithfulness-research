@@ -39,7 +39,7 @@ check("perfect disagreement", cohens_kappa([1, 1, 0, 0], [0, 0, 1, 1]), -1.0)
 check("constant labels are undefined, not perfect",
       cohens_kappa([1, 1, 1], [1, 1, 1]), float("nan"))
 
-print("\n== ranking stability (Amendment 1) ==")
+print("\n== ranking stability ==")
 same = {"a": 0.86, "b": 0.855, "c": 0.75, "d": 0.68}
 shifted = {"a": 0.951, "b": 0.951, "c": 0.943, "d": 0.837}   # b catches a
 r = ranking_stability(same, shifted)
