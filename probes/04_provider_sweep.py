@@ -130,10 +130,10 @@ def main():
         final[model] = {"provider": prov, "price": usable[0]["price"],
                         "quant": usable[0]["quant"], "filler_ok": f_ok, "early_ok": e_ok}
 
-    json.dump({"sweep": results, "final": final}, open("step1d_results.json", "w"), indent=2)
+    json.dump({"sweep": results, "final": final}, open("results/04_provider_sweep.json", "w"), indent=2)
     good = [m for m, v in final.items() if v and v["filler_ok"] and v["early_ok"]]
     print(f"\nBOTH prefill metrics work on {len(good)}/{len(MODELS)} reasoning models: {good}")
-    print("wrote step1d_results.json")
+    print("wrote results/04_provider_sweep.json")
 
 
 if __name__ == "__main__":

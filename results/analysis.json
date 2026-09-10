@@ -1,0 +1,474 @@
+{
+ "n_models": 8,
+ "models": [
+  "Qwen/Qwen3.8-27B",
+  "allenai/Olmo-3.1-32B-Instruct",
+  "allenai/Olmo-3.1-32B-Think",
+  "google/gemma-4-31B-it",
+  "meta-models/Muse-Glimmer-30B",
+  "mistralai/Mistral-Small-3.2-24B-Instruct-2506",
+  "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
+  "openai/gpt-oss-20b"
+ ],
+ "scores": {
+  "Qwen/Qwen3.8-27B": {
+   "biasing_features": 0.16279069767441862,
+   "filler_tokens": 0.4148296593186373,
+   "early_answering": 0.2152304609218437
+  },
+  "allenai/Olmo-3.1-32B-Instruct": {
+   "biasing_features": 0.6470588235294118,
+   "filler_tokens": 0.5419354838709678,
+   "early_answering": 0.37870967741935485
+  },
+  "allenai/Olmo-3.1-32B-Think": {
+   "biasing_features": 0.49206349206349204,
+   "filler_tokens": 0.5666666666666667,
+   "early_answering": 0.22687500000000002
+  },
+  "google/gemma-4-31B-it": {
+   "biasing_features": 0.45544554455445546,
+   "filler_tokens": 0.3868312757201646,
+   "early_answering": 0.3045267489711934
+  },
+  "meta-models/Muse-Glimmer-30B": {
+   "biasing_features": 0.48333333333333334,
+   "filler_tokens": 0.5,
+   "early_answering": 0.21819999999999998
+  },
+  "mistralai/Mistral-Small-3.2-24B-Instruct-2506": {
+   "biasing_features": 0.16279069767441862,
+   "filler_tokens": 0.5075921908893709,
+   "early_answering": 0.3616052060737527
+  },
+  "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16": {
+   "biasing_features": 0.5287356321839081,
+   "filler_tokens": 0.5708333333333333,
+   "early_answering": 0.3179166666666667
+  },
+  "openai/gpt-oss-20b": {
+   "biasing_features": 0.7857142857142857,
+   "filler_tokens": 0.6,
+   "early_answering": 0.35711340206185566
+  }
+ },
+ "rankings": {
+  "biasing_features": [
+   "openai/gpt-oss-20b",
+   "allenai/Olmo-3.1-32B-Instruct",
+   "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
+   "allenai/Olmo-3.1-32B-Think",
+   "meta-models/Muse-Glimmer-30B",
+   "google/gemma-4-31B-it",
+   "Qwen/Qwen3.8-27B",
+   "mistralai/Mistral-Small-3.2-24B-Instruct-2506"
+  ],
+  "filler_tokens": [
+   "openai/gpt-oss-20b",
+   "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
+   "allenai/Olmo-3.1-32B-Think",
+   "allenai/Olmo-3.1-32B-Instruct",
+   "mistralai/Mistral-Small-3.2-24B-Instruct-2506",
+   "meta-models/Muse-Glimmer-30B",
+   "Qwen/Qwen3.8-27B",
+   "google/gemma-4-31B-it"
+  ],
+  "early_answering": [
+   "allenai/Olmo-3.1-32B-Instruct",
+   "mistralai/Mistral-Small-3.2-24B-Instruct-2506",
+   "openai/gpt-oss-20b",
+   "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
+   "google/gemma-4-31B-it",
+   "allenai/Olmo-3.1-32B-Think",
+   "meta-models/Muse-Glimmer-30B",
+   "Qwen/Qwen3.8-27B"
+  ]
+ },
+ "tau": {
+  "BF x Filler": {
+   "tau": 0.6182840223353118,
+   "ci_low": 0.21428571428571427,
+   "ci_high": 0.7142857142857143,
+   "n_boot": 2000,
+   "n_items": 500,
+   "models": [
+    "Qwen/Qwen3.8-27B",
+    "allenai/Olmo-3.1-32B-Instruct",
+    "allenai/Olmo-3.1-32B-Think",
+    "google/gemma-4-31B-it",
+    "meta-models/Muse-Glimmer-30B",
+    "mistralai/Mistral-Small-3.2-24B-Instruct-2506",
+    "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
+    "openai/gpt-oss-20b"
+   ]
+  },
+  "BF x Early": {
+   "tau": 0.40006613209931935,
+   "ci_low": 0.0,
+   "ci_high": 0.5714285714285714,
+   "n_boot": 2000,
+   "n_items": 500,
+   "models": [
+    "Qwen/Qwen3.8-27B",
+    "allenai/Olmo-3.1-32B-Instruct",
+    "allenai/Olmo-3.1-32B-Think",
+    "google/gemma-4-31B-it",
+    "meta-models/Muse-Glimmer-30B",
+    "mistralai/Mistral-Small-3.2-24B-Instruct-2506",
+    "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
+    "openai/gpt-oss-20b"
+   ]
+  },
+  "Filler x Early": {
+   "tau": 0.35714285714285715,
+   "ci_low": 0.0,
+   "ci_high": 0.5,
+   "n_boot": 2000,
+   "n_items": 500,
+   "models": [
+    "Qwen/Qwen3.8-27B",
+    "allenai/Olmo-3.1-32B-Instruct",
+    "allenai/Olmo-3.1-32B-Think",
+    "google/gemma-4-31B-it",
+    "meta-models/Muse-Glimmer-30B",
+    "mistralai/Mistral-Small-3.2-24B-Instruct-2506",
+    "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
+    "openai/gpt-oss-20b"
+   ]
+  }
+ },
+ "H1_pass": true,
+ "falsified": false,
+ "kappa": {
+  "BF x Filler": {
+   "kappa": 0.10816191108161902,
+   "n": 672
+  },
+  "BF x Early": {
+   "kappa": -0.23958333333333337,
+   "n": 672
+  },
+  "Filler x Early": {
+   "kappa": 0.22138445735426363,
+   "n": 3856
+  }
+ },
+ "H2_pass": true,
+ "rank_swaps": {
+  "Qwen/Qwen3.8-27B > allenai/Olmo-3.1-32B-Instruct": {
+   "biasing_features": 0.0,
+   "filler_tokens": 0.0
+  },
+  "Qwen/Qwen3.8-27B > allenai/Olmo-3.1-32B-Think": {
+   "biasing_features": 0.0,
+   "filler_tokens": 0.0
+  },
+  "Qwen/Qwen3.8-27B > google/gemma-4-31B-it": {
+   "biasing_features": 0.0,
+   "filler_tokens": 0.822
+  },
+  "Qwen/Qwen3.8-27B > meta-models/Muse-Glimmer-30B": {
+   "biasing_features": 0.0,
+   "filler_tokens": 0.0
+  },
+  "Qwen/Qwen3.8-27B > mistralai/Mistral-Small-3.2-24B-Instruct-2506": {
+   "biasing_features": 0.5035,
+   "filler_tokens": 0.0
+  },
+  "Qwen/Qwen3.8-27B > nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16": {
+   "biasing_features": 0.0,
+   "filler_tokens": 0.0
+  },
+  "Qwen/Qwen3.8-27B > openai/gpt-oss-20b": {
+   "biasing_features": 0.0,
+   "filler_tokens": 0.0
+  },
+  "allenai/Olmo-3.1-32B-Instruct > allenai/Olmo-3.1-32B-Think": {
+   "biasing_features": 0.975,
+   "filler_tokens": 0.1435
+  },
+  "allenai/Olmo-3.1-32B-Instruct > google/gemma-4-31B-it": {
+   "biasing_features": 0.994,
+   "filler_tokens": 1.0
+  },
+  "allenai/Olmo-3.1-32B-Instruct > meta-models/Muse-Glimmer-30B": {
+   "biasing_features": 0.965,
+   "filler_tokens": 0.929
+  },
+  "allenai/Olmo-3.1-32B-Instruct > mistralai/Mistral-Small-3.2-24B-Instruct-2506": {
+   "biasing_features": 1.0,
+   "filler_tokens": 0.884
+  },
+  "allenai/Olmo-3.1-32B-Instruct > nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16": {
+   "biasing_features": 0.9385,
+   "filler_tokens": 0.1285
+  },
+  "allenai/Olmo-3.1-32B-Instruct > openai/gpt-oss-20b": {
+   "biasing_features": 0.0555,
+   "filler_tokens": 0.0085
+  },
+  "allenai/Olmo-3.1-32B-Think > google/gemma-4-31B-it": {
+   "biasing_features": 0.69,
+   "filler_tokens": 1.0
+  },
+  "allenai/Olmo-3.1-32B-Think > meta-models/Muse-Glimmer-30B": {
+   "biasing_features": 0.5385,
+   "filler_tokens": 0.9925
+  },
+  "allenai/Olmo-3.1-32B-Think > mistralai/Mistral-Small-3.2-24B-Instruct-2506": {
+   "biasing_features": 1.0,
+   "filler_tokens": 0.9855
+  },
+  "allenai/Olmo-3.1-32B-Think > nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16": {
+   "biasing_features": 0.3215,
+   "filler_tokens": 0.412
+  },
+  "allenai/Olmo-3.1-32B-Think > openai/gpt-oss-20b": {
+   "biasing_features": 0.002,
+   "filler_tokens": 0.098
+  },
+  "google/gemma-4-31B-it > meta-models/Muse-Glimmer-30B": {
+   "biasing_features": 0.3525,
+   "filler_tokens": 0.0005
+  },
+  "google/gemma-4-31B-it > mistralai/Mistral-Small-3.2-24B-Instruct-2506": {
+   "biasing_features": 1.0,
+   "filler_tokens": 0.0
+  },
+  "google/gemma-4-31B-it > nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16": {
+   "biasing_features": 0.1175,
+   "filler_tokens": 0.0
+  },
+  "google/gemma-4-31B-it > openai/gpt-oss-20b": {
+   "biasing_features": 0.0005,
+   "filler_tokens": 0.0
+  },
+  "meta-models/Muse-Glimmer-30B > mistralai/Mistral-Small-3.2-24B-Instruct-2506": {
+   "biasing_features": 1.0,
+   "filler_tokens": 0.404
+  },
+  "meta-models/Muse-Glimmer-30B > nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16": {
+   "biasing_features": 0.2805,
+   "filler_tokens": 0.002
+  },
+  "meta-models/Muse-Glimmer-30B > openai/gpt-oss-20b": {
+   "biasing_features": 0.0015,
+   "filler_tokens": 0.0
+  },
+  "mistralai/Mistral-Small-3.2-24B-Instruct-2506 > nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16": {
+   "biasing_features": 0.0,
+   "filler_tokens": 0.007
+  },
+  "mistralai/Mistral-Small-3.2-24B-Instruct-2506 > openai/gpt-oss-20b": {
+   "biasing_features": 0.0,
+   "filler_tokens": 0.0
+  },
+  "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16 > openai/gpt-oss-20b": {
+   "biasing_features": 0.002,
+   "filler_tokens": 0.1025
+  }
+ },
+ "stability": {
+  "n_all": 500,
+  "n_clean": 214,
+  "biasing_features": {
+   "tau": 0.37037037037037035,
+   "swaps": [
+    {
+     "pair": "allenai/Olmo-3.1-32B-Instruct / allenai/Olmo-3.1-32B-Think",
+     "gap_pp": 15.5,
+     "non_adjacent": true
+    },
+    {
+     "pair": "allenai/Olmo-3.1-32B-Instruct / google/gemma-4-31B-it",
+     "gap_pp": 19.16,
+     "non_adjacent": true
+    },
+    {
+     "pair": "allenai/Olmo-3.1-32B-Instruct / meta-models/Muse-Glimmer-30B",
+     "gap_pp": 16.37,
+     "non_adjacent": true
+    },
+    {
+     "pair": "allenai/Olmo-3.1-32B-Instruct / nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
+     "gap_pp": 11.83,
+     "non_adjacent": true
+    },
+    {
+     "pair": "allenai/Olmo-3.1-32B-Think / google/gemma-4-31B-it",
+     "gap_pp": 3.66,
+     "non_adjacent": true
+    },
+    {
+     "pair": "allenai/Olmo-3.1-32B-Think / meta-models/Muse-Glimmer-30B",
+     "gap_pp": 0.87,
+     "non_adjacent": false
+    },
+    {
+     "pair": "google/gemma-4-31B-it / nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
+     "gap_pp": 7.33,
+     "non_adjacent": true
+    },
+    {
+     "pair": "meta-models/Muse-Glimmer-30B / nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
+     "gap_pp": 4.54,
+     "non_adjacent": true
+    }
+   ],
+   "non_adjacent_swaps": [
+    {
+     "pair": "allenai/Olmo-3.1-32B-Instruct / allenai/Olmo-3.1-32B-Think",
+     "gap_pp": 15.5,
+     "non_adjacent": true
+    },
+    {
+     "pair": "allenai/Olmo-3.1-32B-Instruct / google/gemma-4-31B-it",
+     "gap_pp": 19.16,
+     "non_adjacent": true
+    },
+    {
+     "pair": "allenai/Olmo-3.1-32B-Instruct / meta-models/Muse-Glimmer-30B",
+     "gap_pp": 16.37,
+     "non_adjacent": true
+    },
+    {
+     "pair": "allenai/Olmo-3.1-32B-Instruct / nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
+     "gap_pp": 11.83,
+     "non_adjacent": true
+    },
+    {
+     "pair": "allenai/Olmo-3.1-32B-Think / google/gemma-4-31B-it",
+     "gap_pp": 3.66,
+     "non_adjacent": true
+    },
+    {
+     "pair": "google/gemma-4-31B-it / nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
+     "gap_pp": 7.33,
+     "non_adjacent": true
+    },
+    {
+     "pair": "meta-models/Muse-Glimmer-30B / nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
+     "gap_pp": 4.54,
+     "non_adjacent": true
+    }
+   ],
+   "pass": false
+  },
+  "filler_tokens": {
+   "tau": 0.5714285714285714,
+   "swaps": [
+    {
+     "pair": "Qwen/Qwen3.8-27B / google/gemma-4-31B-it",
+     "gap_pp": 2.8,
+     "non_adjacent": true
+    },
+    {
+     "pair": "allenai/Olmo-3.1-32B-Think / nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
+     "gap_pp": 0.42,
+     "non_adjacent": false
+    },
+    {
+     "pair": "allenai/Olmo-3.1-32B-Think / openai/gpt-oss-20b",
+     "gap_pp": 3.33,
+     "non_adjacent": true
+    },
+    {
+     "pair": "google/gemma-4-31B-it / meta-models/Muse-Glimmer-30B",
+     "gap_pp": 11.32,
+     "non_adjacent": true
+    },
+    {
+     "pair": "google/gemma-4-31B-it / mistralai/Mistral-Small-3.2-24B-Instruct-2506",
+     "gap_pp": 12.08,
+     "non_adjacent": true
+    },
+    {
+     "pair": "meta-models/Muse-Glimmer-30B / mistralai/Mistral-Small-3.2-24B-Instruct-2506",
+     "gap_pp": 0.76,
+     "non_adjacent": false
+    }
+   ],
+   "non_adjacent_swaps": [
+    {
+     "pair": "Qwen/Qwen3.8-27B / google/gemma-4-31B-it",
+     "gap_pp": 2.8,
+     "non_adjacent": true
+    },
+    {
+     "pair": "allenai/Olmo-3.1-32B-Think / openai/gpt-oss-20b",
+     "gap_pp": 3.33,
+     "non_adjacent": true
+    },
+    {
+     "pair": "google/gemma-4-31B-it / meta-models/Muse-Glimmer-30B",
+     "gap_pp": 11.32,
+     "non_adjacent": true
+    },
+    {
+     "pair": "google/gemma-4-31B-it / mistralai/Mistral-Small-3.2-24B-Instruct-2506",
+     "gap_pp": 12.08,
+     "non_adjacent": true
+    }
+   ],
+   "pass": false
+  },
+  "early_answering": {
+   "tau": 0.9285714285714286,
+   "swaps": [
+    {
+     "pair": "mistralai/Mistral-Small-3.2-24B-Instruct-2506 / openai/gpt-oss-20b",
+     "gap_pp": 0.45,
+     "non_adjacent": false
+    }
+   ],
+   "non_adjacent_swaps": [],
+   "pass": true
+  }
+ },
+ "H3": {
+  "per_model": {
+   "Qwen/Qwen3.8-27B": {
+    "thinking": true,
+    "mean_kappa": -0.0622184350375189
+   },
+   "allenai/Olmo-3.1-32B-Instruct": {
+    "thinking": false,
+    "mean_kappa": 0.3407349502621009
+   },
+   "allenai/Olmo-3.1-32B-Think": {
+    "thinking": true,
+    "mean_kappa": 0.07539193958795037
+   },
+   "google/gemma-4-31B-it": {
+    "thinking": true,
+    "mean_kappa": -0.10018587478066922
+   },
+   "meta-models/Muse-Glimmer-30B": {
+    "thinking": true,
+    "mean_kappa": -0.03898058718404407
+   },
+   "mistralai/Mistral-Small-3.2-24B-Instruct-2506": {
+    "thinking": false,
+    "mean_kappa": 0.22645281977129308
+   },
+   "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16": {
+    "thinking": true,
+    "mean_kappa": -0.0063659103115540445
+   },
+   "openai/gpt-oss-20b": {
+    "thinking": true,
+    "mean_kappa": 0.08094392811423605
+   }
+  },
+  "thinking_mean": -0.008569156601933301,
+  "instruct_mean": 0.28359388501669697,
+  "n_thinking": 6,
+  "n_instruct": 2,
+  "direction_as_predicted": true,
+  "separation_complete": true,
+  "matched_pair": {
+   "allenai/Olmo-3.1-32B-Think": 0.07539193958795037,
+   "allenai/Olmo-3.1-32B-Instruct": 0.3407349502621009
+  }
+ }
+}

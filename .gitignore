@@ -1,7 +1,13 @@
 # secrets — never commit
 .env
 .env.*
+!.env.example
 *.key
+
+# private to the author — working notes and the draft write-up.
+# The analysis scripts still generate into writing/; a fork regenerates its own.
+spec/
+writing/
 
 # logs and scratch
 *.log

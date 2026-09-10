@@ -8,7 +8,7 @@ For each candidate model, walk its providers until one passes BOTH:
                         (N/A -> auto-pass for instruct models: their CoT is in `content`,
                          so a content prefill already IS trace injection)
 
-Writes screen_results.json and prints a capable-model table grouped by lab.
+Writes results/05_catalog_screen.json and prints a capable-model table grouped by lab.
 """
 
 import json, os, sys, urllib.error, urllib.request
@@ -133,7 +133,7 @@ def main():
     print(f"screening {len(cands)} models across {len(set(c['lab'] for c in cands))} labs\n", flush=True)
     with ThreadPoolExecutor(max_workers=14) as ex:
         res = list(ex.map(screen, cands))
-    json.dump(res, open("screen_results.json", "w"), indent=2)
+    json.dump(res, open("results/05_catalog_screen.json", "w"), indent=2)
 
     ok = sorted([r for r in res if r["usable"]], key=lambda r: (r["lab"], r["price"]))
     print(f"{'='*92}\nCAPABLE MODELS: {len(ok)} of {len(cands)}\n")
@@ -147,7 +147,7 @@ def main():
     reasoning_ok = [r for r in ok if r["reasoning"]]
     print(f"  reasoning models: {len(reasoning_ok)} | instruct models: {len(ok)-len(reasoning_ok)}")
     print(f"\n  VERDICT: {'ENOUGH -- rebuild the model list from these' if len(ok) >= 8 else 'NOT ENOUGH -- fall back to simulatability'}")
-    print("\nwrote screen_results.json")
+    print("\nwrote results/05_catalog_screen.json")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,14 @@
+{
+ "kappa": 0.4549912988451194,
+ "n": 195,
+ "n_dropped": 2,
+ "confusion": {
+  "both_true": 62,
+  "bulk_only": 34,
+  "reference_only": 19,
+  "both_false": 80
+ },
+ "bulk_rate": 0.49230769230769234,
+ "reference_rate": 0.4153846153846154,
+ "pass": false
+}

@@ -11,7 +11,8 @@ Runs five probes per model against its pinned OpenRouter endpoint:
 D is the gate that matters. A model that accepts the dots and then reasons anyway
 yields a Filler Tokens number that is pure noise, and a gate on B alone misses it.
 
-Usage:  OPENROUTER_API_KEY=sk-or-... python3 step1_probe.py
+Usage:  OPENROUTER_API_KEY=sk-or-... python3 probes/01_api_prefill_probe.py
+        (run from the repository root -- output goes to results/)
 """
 
 import json
@@ -187,7 +188,7 @@ def main():
         print(f"probing {model} @ {provider} ...", flush=True)
         results.append(probe(model, provider))
 
-    with open("step1_results.json", "w") as f:
+    with open("results/01_api_prefill_probe.json", "w") as f:
         json.dump(results, f, indent=2)
 
     print(f"\n{'model':<36}{'served':<12}{'pin':<5}{'reas':<6}{'B':<4}{'C':<4}{'D-GATE':<8}{'lp':<4}")
@@ -215,7 +216,7 @@ def main():
     if len(passed) < len(thinking):
         print("  -> Filler Tokens and Early Answering do not hold on the failing models.")
         print("  -> Switch to the counterfactual-simulatability fallback (spec section 5).")
-    print("\nfull detail: step1_results.json")
+    print("\nfull detail: results/01_api_prefill_probe.json")
 
 
 if __name__ == "__main__":

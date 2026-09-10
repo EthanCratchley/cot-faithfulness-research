@@ -1,4 +1,6 @@
+anthropic
 datasets
+matplotlib
 numpy
 pandas
 scipy

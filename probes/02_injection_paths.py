@@ -143,8 +143,8 @@ def main():
 
         out[model] = rec
 
-    json.dump(out, open("step1b_results.json", "w"), indent=2)
-    print("\nwrote step1b_results.json")
+    json.dump(out, open("results/02_injection_paths.json", "w"), indent=2)
+    print("\nwrote results/02_injection_paths.json")
 
 
 if __name__ == "__main__":

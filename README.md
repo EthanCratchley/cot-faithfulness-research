@@ -10,7 +10,9 @@ This study holds the data fixed and varies only the metric.
 > When a paper reports that Model A's reasoning is more faithful than Model B's, how much of that
 > conclusion is determined by which faithfulness metric the authors happened to use?
 
-Full design, hypothesis, analysis plan and limitations: **[`spec/design.md`](spec/design.md)**
+The design was fixed in advance: hypotheses, thresholds and the falsification condition
+were written down before any faithfulness metric was computed. They are restated in full
+under [Pre-registered hypotheses](#pre-registered-hypotheses) below.
 
 ## Status
 
@@ -18,11 +20,68 @@ Full design, hypothesis, analysis plan and limitations: **[`spec/design.md`](spe
 | ---- | ----- |
 | Step 0 — weight availability | ✅ passed |
 | Step 1 — API capability probe | ✅ passed — *drove the switch to local execution* |
-| Step 1L (offline) — CoT injection verified on all 8 tokenizers | ✅ passed |
-| Step 1L (GPU) — confirm models continue rather than re-reason | next, needs a pod |
-| Steps 2–9 | not started |
+| Step 1L — CoT injection verified offline and on real weights | ✅ passed, 8/8 |
+| Step 2 — baseline accuracy pilot | ✅ run; two gates amended |
+| Step 3 — predictions written down | ✅ before any metric was computed |
+| Step 4 — harness, judge, scoring layer | ✅ |
+| Step 5 — published-number anchor | ⚠️ **dropped**, Amendment 3 |
+| Step 6 — full runs, 8 models × 500 items | ✅ |
+| Step 7 — analysis | ✅ **H1 and H2 confirmed** |
+| Step 8 — canary re-run | ⚠️ **not run**, Amendment 5 (no H100 NVL stock) |
+| Step 9 — write-up | 🔄 in progress |
 
-`probes/` is Step 1 evidence. `harness/` is the beginning of the real pipeline.
+## Pre-registered hypotheses
+
+Fixed before the first full run, with the Step 2 baseline accuracies disclosed as the
+only prior observation:
+
+| | Registered as | Outcome |
+| --- | --- | --- |
+| **H1** | at least one metric pair with Kendall's tau-b < 0.6 whose bootstrap 95% CI excludes 0.8 | **confirmed** — two pairs |
+| **H2** | pooled trace-level Cohen's kappa < 0.4 on every pair | **confirmed** — all three, one negative |
+| **H3** | thinking models show more metric disagreement than instruct models | direction confirmed; the statistic was chosen after seeing the data, so it is reported as post-hoc |
+| **Falsifier** | all three pairs above tau 0.8 with CIs excluding 0.6 | **not triggered** on any pair |
+
+Two metric choices were settled before any run: `faithful@k` was demoted from the metric
+set (it is a monotone transform of the Biasing Features rate, so its rank correlation is
+forced toward +1 by construction) and FUR was excluded outright (it requires per-step
+parameter unlearning). One divergence from the source paper is deliberate: the hint
+targets a random wrong option ≠ gold, fixed per item, because the paper's rule picks an
+option ≠ *the model's own prediction* — which is model-dependent and would hand every
+model a different item set, something a ranking study cannot afford.
+
+## Results
+
+All three metrics on eight models over 500 frozen MMLU-Pro items:
+
+| | tau-b | 95% CI |
+| --- | --- | --- |
+| Biasing Features × Early Answering | **+0.400** | [+0.000, +0.571] |
+| Filler Tokens × Early Answering | **+0.357** | [+0.000, +0.500] |
+| Biasing Features × Filler Tokens | +0.618 | [+0.214, +0.714] |
+
+**H1 confirmed** — two pairs under 0.6 with CIs excluding 0.8. **H2 confirmed** — pooled
+trace-level kappa +0.108, −0.240, +0.221, all under 0.4; BF × Early is *negative*, the two
+metrics agreeing less than chance on individual traces.
+
+Four of 28 model pairs reverse outright. The sharpest is the matched pair the study was
+designed around: **Olmo-3.1-32B-Instruct beats Olmo-3.1-32B-Think in 98% of bootstrap
+resamples under Biasing Features, and in 14% under Filler Tokens.** Same models, same items,
+same traces.
+
+Two findings came out of the machinery rather than the hypothesis:
+
+- **The elicitation scaffold decides the verdict.** Free-running, two models ignore a
+  misleading injected trace and re-derive the answer; cued, they follow it. Opposite
+  faithfulness verdicts from a scaffold choice published work does not report.
+- **So does the judge.** Swapping the Biasing Features judge from Haiku to Opus — same
+  traces, same criterion — moved Olmo-3.1-32B-Think from 3.2% to 49.2% and cut the
+  matched-pair gap from 39.5 points to 15.5. The two judges' model rankings correlate at
+  tau +0.546 — *lower* than the +0.618 between Biasing Features and Filler Tokens. The
+  study's thesis reproducing one level down: implementation choice *inside* a metric
+  reorders models at least as much as the choice *between* metrics.
+
+`probes/` is Step 1 evidence. `harness/` is the pipeline. `results/analysis.json` is Step 7.
 
 ## Metrics
 
@@ -73,11 +132,26 @@ model run with thinking enabled vs. suppressed (varies inference).
 ## Layout
 
 ```
-spec/design.md   the pre-registered design — read this first
-harness/         prompt construction and injection verification
-probes/          Step 1 capability probes, in execution order
-results/         their raw JSON output
+harness/            prompt construction, generation, judging
+probes/             Step 1 API capability probes, in execution order
+analysis/           scoring, statistics, and the write-up artefacts
+writing/            the write-up: skeleton, generated tables, figures
+
+results/
+  full/             the 8 × 500 generations the study is scored on (~78 MB)
+  judge/            Opus 5 verdicts — the ones the study reports
+  judge_haiku_v2/   superseded Haiku 4.5 verdicts, kept so the swap is inspectable
+  step2/            baseline accuracy pilot (200 items)
+  step1L/           CoT-injection verification on real weights, free-running
+  step1L_cued/      the same check with the answer cued — the scaffold comparison
+  probe/ plumbing/  small pre-flight runs kept for provenance
+  0*.json           Step 1 probe output, numbered in execution order
+  analysis.json     Step 7 headline results
+  judge_swap.json   per-model Biasing Features under each judge
 ```
+
+Copy `.env.example` to `.env` before running anything that calls an API. `.env` is
+gitignored and no key is committed anywhere in this repository's history.
 
 ### Injection verification
 
@@ -102,17 +176,73 @@ of probing.
 Probes run in order: single-model prefill → injection-path variants → reasoning-disable rescue →
 provider sweep → catalog screen → shortlist verification.
 
-## Reproducing the probes
+## Reproducing
+
+Everything except generation runs on a laptop from the committed results — no GPU, no
+API key. Generation itself needs an 80GB GPU and is the only expensive step.
 
 ```bash
 pip install -r requirements.txt
-export OPENROUTER_API_KEY=sk-or-...
+
+python analysis/run_analysis.py      # -> results/analysis.json      (Step 7 headline)
+python analysis/judge_swap.py        # -> results/judge_swap.json    (the judge swap)
+python analysis/writeup_tables.py    # -> writing/tables.md          (every table)
+python analysis/figures.py           # -> writing/figures/*.svg|png  (light + dark)
+```
+
+The Step 1 probes are the only part that calls an API, and re-running all of them cost
+about $2:
+
+```bash
+export OPENROUTER_API_KEY=sk-or-...   # never committed; .env is gitignored
 python probes/01_api_prefill_probe.py
 ```
 
-Total cost of all Step 1 probes was about $2.
+### Tests
+
+Analysis tests run from the repo root; harness tests resolve their fixtures relative to
+`harness/` and must be run from inside it:
+
+```bash
+python analysis/test_stats.py     # statistics, checked against scipy
+python analysis/test_metrics.py   # scoring and support rules
+python analysis/test_writeup.py   # tables and figures vs. the analysis they came from
+
+cd harness && python test_extraction.py && python test_judge.py && python test_metrics.py
+```
+
+`harness/verify_templates.py` needs only `transformers` and `jinja2` and proves an
+injected trace lands between each model's reasoning delimiters — 8/8 pass in seconds.
+
+## Limitations
+
+Stated here rather than left to the reader to discover:
+
+- **Filler Tokens' ranking is not robust to truncation** (tau +0.571 between the full
+  item set and the non-truncated subset, 4 non-adjacent swaps) on healthy support. Any
+  conclusion resting on its ordering is weakened.
+- **No external validation.** The metric implementations are ours and were never checked
+  against a published number — the planned anchor run was dropped. Nothing here
+  establishes that this Biasing Features implementation is commensurable with published
+  Biasing Features.
+- **No reproduction check.** The re-run canary never executed (no H100 NVL stock).
+  Determinism is argued from configuration — fixed seed, pinned revisions, one vLLM
+  version — not demonstrated.
+- **n = 8 models.** tau is noisy at this n; every conclusion rests on bootstrap CIs and
+  rank-swap frequencies rather than point estimates.
+- **The judge changed mid-study.** Haiku verdicts are preserved in `results/judge_haiku_v2/`
+  so the before/after is inspectable.
+- **Size ceiling.** All models ≤32B to fit one GPU; this says nothing about frontier scale.
+- **Three of eight models sit above the pre-registered 50–80% accuracy band** (81.6%,
+  83.2% and 83.8% on the scored item set), so differences among those three are measured
+  against less headroom. The band was accepted as-is rather than re-drawn after the fact;
+  the median across models, 73.1%, is inside it.
+- Two traces (0.3%) went unjudged — the API declined that specific content.
+- One hint type, one dataset, three constructs rather than five.
 
 ## License
 
-Code MIT. See `spec/design.md` for per-model license notes — one model
-(`NVIDIA-Nemotron-3-Nano-30B-A3B`) ships under a non-Apache license.
+Code is MIT — see [`LICENSE`](LICENSE). Model weights and datasets belong to their
+respective owners. Seven of the eight models ship under Apache-2.0 or a comparably
+permissive licence; `NVIDIA-Nemotron-3-Nano-30B-A3B` ships under NVIDIA's own model
+licence, which you should read before redistributing anything derived from its weights.

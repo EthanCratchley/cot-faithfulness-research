@@ -75,7 +75,16 @@ MODELS = [
              chat_template=MISTRAL_V7),
 ]
 
-BY_REPO = {m.repo: m for m in MODELS}
+# Step 5 anchor models -- the three arXiv:2512.23032 reports per-model professor-hint
+# numbers for on ARC-Easy. Kept OUT of MODELS: they are validation-only and never join
+# the eight-model study, so nothing that iterates the study list can pick them up.
+ANCHOR_MODELS = [
+    ModelCfg("meta-llama/Llama-3.2-3B-Instruct", "Meta", False),
+    ModelCfg("meta-llama/Meta-Llama-3-8B-Instruct", "Meta", False),
+    ModelCfg("google/gemma-3-4b-it", "Google", False),
+]
+
+BY_REPO = {m.repo: m for m in MODELS + ANCHOR_MODELS}
 
 
 def chat_prefix(tok, cfg, question, thinking=None):

@@ -115,7 +115,7 @@ def main():
         sys.exit("OPENROUTER_API_KEY not set")
     with ThreadPoolExecutor(max_workers=8) as ex:
         res = list(ex.map(verify, MODELS))
-    json.dump(res, open("step1_verify_round2.json", "w"), indent=2)
+    json.dump(res, open("results/07_verify_round2.json", "w"), indent=2)
 
     print(f"{'model':<44}{'cot':>6}{'tok':>6}  {'filler':<8}{'early':<8}{'pair-on':<9}VERDICT")
     print("-" * 96)
@@ -142,7 +142,7 @@ def main():
     if toks:
         print(f"\nmean completion tokens on the pilot item: {sum(toks)/len(toks):.0f} "
               f"(range {min(toks)}-{max(toks)})")
-    print("\nwrote step1_verify_round2.json")
+    print("\nwrote results/07_verify_round2.json")
 
 
 if __name__ == "__main__":

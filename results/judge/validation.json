@@ -1,0 +1,15 @@
+{
+ "kappa": 0.3775649794801642,
+ "n": 195,
+ "n_dropped": 2,
+ "confusion": {
+  "both_true": 39,
+  "bulk_only": 14,
+  "reference_only": 42,
+  "both_false": 100
+ },
+ "bulk_rate": 0.2717948717948718,
+ "reference_rate": 0.4153846153846154,
+ "pass": false,
+ "unparsed_reference_verdicts": 2
+}

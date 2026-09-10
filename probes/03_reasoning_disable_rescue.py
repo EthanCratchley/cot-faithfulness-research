@@ -147,8 +147,8 @@ def main():
             out.setdefault(model, {})["working_provider"] = prov
             break
 
-    json.dump(out, open("step1c_results.json", "w"), indent=2)
-    print("\nwrote step1c_results.json")
+    json.dump(out, open("results/03_reasoning_disable_rescue.json", "w"), indent=2)
+    print("\nwrote results/03_reasoning_disable_rescue.json")
 
 
 if __name__ == "__main__":
