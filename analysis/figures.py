@@ -14,6 +14,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
+from matplotlib.patches import FancyArrowPatch, FancyBboxPatch
 
 REPO = Path(__file__).resolve().parent.parent
 OUT = REPO / "writing/figures"
@@ -46,11 +47,64 @@ def style(fig, axes, t):
 def save(fig, stem, theme):
     OUT.mkdir(parents=True, exist_ok=True)
     suffix = "" if theme == "light" else "-dark"
-    for ext in ("svg", "png"):
-        fig.savefig(OUT / f"{stem}{suffix}.{ext}", format=ext, dpi=200,
-                    bbox_inches="tight", facecolor=fig.get_facecolor())
+    for ext in ("svg", "png", "pdf"):
+        # PDFs go into the LaTeX paper, whose page is white; the tinted surface is for web.
+        if ext == "pdf":
+            if theme != "light":
+                continue
+            out, fc = REPO / "paper/figures", "#ffffff"
+        else:
+            out, fc = OUT, fig.get_facecolor()
+        out.mkdir(parents=True, exist_ok=True)
+        fig.savefig(out / f"{stem}{suffix}.{ext}", format=ext, dpi=200,
+                    bbox_inches="tight", facecolor=fc)
     plt.close(fig)
     print(f"  writing/figures/{stem}{suffix}.svg + .png")
+
+
+def fig0_workflow(t, theme):
+    """The pipeline: one hinted trace per item, three metrics applied to it, two comparisons."""
+    fig, ax = plt.subplots(figsize=(11, 4.6))
+    ax.set_xlim(0, 11)
+    ax.set_ylim(0, 4.6)
+    ax.axis("off")
+
+    def box(x, y, w, h, title, body, accent=False):
+        ax.add_patch(FancyBboxPatch((x, y), w, h, boxstyle="round,pad=0,rounding_size=0.08",
+                                    fc=t["surface"], ec=t["series1"] if accent else t["grid"],
+                                    lw=1.8 if accent else 1.2, zorder=2))
+        ax.text(x + w / 2, y + h - 0.2, title, ha="center", va="top", fontsize=9.5,
+                color=t["primary"], fontweight="bold", zorder=3)
+        ax.text(x + w / 2, y + h - 0.52, body, ha="center", va="top", fontsize=8.3,
+                color=t["secondary"], zorder=3, linespacing=1.35)
+
+    def arrow(x0, y0, x1, y1):
+        ax.add_patch(FancyArrowPatch((x0, y0), (x1, y1), arrowstyle="-|>", mutation_scale=11,
+                                     color=t["secondary"], lw=1.1, zorder=1,
+                                     shrinkA=2, shrinkB=2))
+
+    box(0.1, 1.7, 1.8, 1.2, "Inputs", "500 MMLU-Pro items\n8 open-weight models")
+    box(2.4, 2.75, 2.0, 1.1, "Baseline", "question only\nmodel reasons freely")
+    box(2.4, 0.75, 2.0, 1.4, "Hinted", "\u201cA Stanford professor\nthinks the answer is (X)\u201d\n+ question")
+    box(5.0, 3.15, 2.5, 1.25, "Biasing Features",
+        "hint changed the answer?\njudge: does the trace\nadmit the hint?", accent=True)
+    box(5.0, 1.65, 2.5, 1.25, "Filler Tokens",
+        "trace \u2192 200 dots\ndoes the answer change?", accent=True)
+    box(5.0, 0.15, 2.5, 1.25, "Early Answering",
+        "trace cut at 0\u201380%\nis the answer still changing?", accent=True)
+    box(8.1, 1.05, 2.8, 2.5, "Compare metrics",
+        "rank the 8 models per metric\n\u2192 agreement of rankings\n(Kendall\u2019s tau)\n\nlabel each trace per metric\n\u2192 agreement of labels\n(Cohen\u2019s kappa)")
+
+    arrow(1.9, 2.5, 2.4, 3.3)
+    arrow(1.9, 2.1, 2.4, 1.45)
+    arrow(4.4, 3.3, 5.0, 3.75)
+    for y in (3.75, 2.27, 0.77):
+        arrow(4.4, 1.45, 5.0, y)
+        arrow(7.5, y, 8.1, 2.3)
+    ax.text(9.5, 0.6, "uncertainty: 2,000 bootstrap\nresamples of the 500 items", ha="center",
+            va="center", fontsize=8, color=t["secondary"], style="italic")
+    style(fig, ax, t)
+    save(fig, "fig0-workflow", theme)
 
 
 def fig1_reversals(a, t, theme):
@@ -100,8 +154,8 @@ def fig1_reversals(a, t, theme):
                               label="under Biasing Features"),
                        Line2D([], [], marker="o", ls="", ms=9, color=t["series2"],
                               label="under Filler Tokens")],
-              loc="lower right", frameon=False, fontsize=9, labelcolor=t["secondary"],
-              bbox_to_anchor=(1.0, -0.02))
+              loc="upper center", frameon=False, fontsize=9, labelcolor=t["secondary"],
+              bbox_to_anchor=(0.5, -0.16), ncol=2)
     save(fig, "fig1-reversals", theme)
 
 
@@ -174,6 +228,7 @@ def main():
     swap = json.loads((REPO / "results/judge_swap.json").read_text())
     for theme, t in THEMES.items():
         print(f"{theme}:")
+        fig0_workflow(t, theme)
         fig1_reversals(a, t, theme)
         fig2_tau(a, t, theme)
         fig3_judge(swap, t, theme)
